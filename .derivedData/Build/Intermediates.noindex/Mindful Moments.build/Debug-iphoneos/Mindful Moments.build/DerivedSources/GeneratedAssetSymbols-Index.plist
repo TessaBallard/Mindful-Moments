@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>colors</key>
+	<array/>
+	<key>images</key>
+	<array>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameWelcomeScreenDark</string>
+			<key>relativePath</key>
+			<string>./WelcomeScreenDark.imageset</string>
+			<key>swiftSymbol</key>
+			<string>welcomeScreenDark</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameWelcomeScreenLight</string>
+			<key>relativePath</key>
+			<string>./WelcomeScreenLight.imageset</string>
+			<key>swiftSymbol</key>
+			<string>welcomeScreenLight</string>
+		</dict>
+	</array>
+	<key>symbols</key>
+	<array/>
+</dict>
+</plist>

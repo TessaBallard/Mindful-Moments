@@ -1,0 +1,256 @@
+{
+  "source": "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/MeditationPlayerView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Pause meditation",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 411
+        }
+      },
+      {
+        "comment": "",
+        "key": "Resume meditation",
+        "location": {
+          "startingColumn": 74,
+          "startingLine": 411
+        }
+      },
+      {
+        "comment": "",
+        "key": "Double tap to %@ the guided meditation",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 412
+        }
+      },
+      {
+        "comment": "",
+        "key": "Paused",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 315
+        }
+      },
+      {
+        "comment": "",
+        "key": "Paused",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 320
+        }
+      },
+      {
+        "comment": "",
+        "key": "Paused",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 324
+        }
+      },
+      {
+        "comment": "",
+        "key": "Volume",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 479
+        }
+      },
+      {
+        "comment": "",
+        "key": "Muted",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 485
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld%%",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 485
+        }
+      },
+      {
+        "comment": "",
+        "key": "Background sound volume",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 509
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld percent",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 510
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unmute background sounds",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 552
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mute background sounds",
+        "location": {
+          "startingColumn": 91,
+          "startingLine": 552
+        }
+      },
+      {
+        "comment": "",
+        "key": "Double tap to %@ the ambient background audio",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 553
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unmute",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 533
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mute",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 533
+        }
+      },
+      {
+        "comment": "",
+        "key": "Background Sounds",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 583
+        }
+      },
+      {
+        "comment": "",
+        "key": "End Session",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 647
+        }
+      },
+      {
+        "comment": "",
+        "key": "End Session?",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 825
+        }
+      },
+      {
+        "comment": "",
+        "key": "Great Session!",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 855
+        }
+      },
+      {
+        "comment": "",
+        "key": "Audio Error",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 866
+        }
+      },
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 755
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 826
+        }
+      },
+      {
+        "comment": "",
+        "key": "End Session",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 827
+        }
+      },
+      {
+        "comment": "",
+        "key": "Your progress will be saved.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 834
+        }
+      },
+      {
+        "comment": "",
+        "key": "Write Journal Entry",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 856
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 860
+        }
+      },
+      {
+        "comment": "",
+        "key": "Would you like to reflect on your meditation in your journal?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 864
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 870
+        }
+      },
+      {
+        "comment": "",
+        "key": "Preparing Your Session",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 1072
+        }
+      },
+      {
+        "comment": "",
+        "key": "Get comfortable and ready to relax",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 1076
+        }
+      }
+    ]
+  },
+  "version": 1
+}

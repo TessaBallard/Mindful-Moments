@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>11</integer>
+	<key>logs</key>
+	<dict>
+		<key>5D187E0E-17B0-480D-A289-27229C4B38C9</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5D187E0E-17B0-480D-A289-27229C4B38C9.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Mindful Moments project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Mindful Moments</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Mindful Moments with scheme Mindful Moments</string>
+			<key>timeStartedRecording</key>
+			<real>796693756.35181904</real>
+			<key>timeStoppedRecording</key>
+			<real>796693767.08819103</real>
+			<key>title</key>
+			<string>Building project Mindful Moments with scheme Mindful Moments</string>
+			<key>uniqueIdentifier</key>
+			<string>5D187E0E-17B0-480D-A289-27229C4B38C9</string>
+		</dict>
+		<key>B0BDF470-ACC1-4B8E-8DC3-5013B48726D9</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>B0BDF470-ACC1-4B8E-8DC3-5013B48726D9.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Mindful Moments project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Mindful Moments</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Mindful Moments with scheme Mindful Moments</string>
+			<key>timeStartedRecording</key>
+			<real>796719578.07798898</real>
+			<key>timeStoppedRecording</key>
+			<real>796719594.55994499</real>
+			<key>title</key>
+			<string>Building project Mindful Moments with scheme Mindful Moments</string>
+			<key>uniqueIdentifier</key>
+			<string>B0BDF470-ACC1-4B8E-8DC3-5013B48726D9</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

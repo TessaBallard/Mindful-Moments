@@ -1,0 +1,72 @@
+{
+  "source": "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/MeditationDetailsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Choose Duration",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 376
+        }
+      },
+      {
+        "comment": "",
+        "key": "What to Expect",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 399
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start Session",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 421
+        }
+      },
+      {
+        "comment": "",
+        "key": "Back",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 501
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld minute meditation",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 818
+        }
+      },
+      {
+        "comment": "",
+        "key": "Double tap to select %lld minute duration",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 819
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 779
+        }
+      },
+      {
+        "comment": "",
+        "key": "MIN",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 781
+        }
+      }
+    ]
+  },
+  "version": 1
+}

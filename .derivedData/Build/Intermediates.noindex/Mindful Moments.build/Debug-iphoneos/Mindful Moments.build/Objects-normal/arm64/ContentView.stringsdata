@@ -1,0 +1,136 @@
+{
+  "source": "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Mindful Moments",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 149
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pause. Breathe. Be.",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 182
+        }
+      },
+      {
+        "comment": "",
+        "key": "Open app settings to customize background sounds and notifications",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 183
+        }
+      },
+      {
+        "comment": "",
+        "key": "Did you know?",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 197
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose from 8 background sounds in Settings — tap the gear icon above.",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 200
+        }
+      },
+      {
+        "comment": "",
+        "key": "Recently Played",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 251
+        }
+      },
+      {
+        "comment": "",
+        "key": "Your Favorites",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 278
+        }
+      },
+      {
+        "comment": "",
+        "key": "Meditations",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 314
+        }
+      },
+      {
+        "comment": "",
+        "key": "Progress",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 354
+        }
+      },
+      {
+        "comment": "",
+        "key": "Journal",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 379
+        }
+      },
+      {
+        "comment": "",
+        "key": "Remove from favorites",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 500
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add to favorites",
+        "location": {
+          "startingColumn": 76,
+          "startingLine": 500
+        }
+      },
+      {
+        "comment": "",
+        "key": "Double tap to %@ %@ meditation %@ favorites",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 501
+        }
+      },
+      {
+        "comment": "",
+        "key": "Quick Breathing",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 546
+        }
+      },
+      {
+        "comment": "",
+        "key": "1-3 minute calm reset",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 550
+        }
+      }
+    ]
+  },
+  "version": 1
+}

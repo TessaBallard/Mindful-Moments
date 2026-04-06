@@ -1,0 +1,24 @@
+{
+  "source": "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/CompletionCelebrationView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Meditation Complete!",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "You completed %lld minutes of %@ meditation",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 64
+        }
+      }
+    ]
+  },
+  "version": 1
+}
