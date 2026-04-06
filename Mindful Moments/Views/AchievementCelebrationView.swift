@@ -44,7 +44,7 @@ struct AchievementCelebrationView: View {
                             .frame(width: 140, height: 140)
                         
                         Image(systemName: achievement.iconName)
-                            .font(.system(size: 72, design: .rounded))
+                            .font(.appScaledSystem(size: 72, design: .rounded))
                             .foregroundStyle(.yellow)
                     }
                     .scaleEffect(showContent ? 1.0 : 0.5)

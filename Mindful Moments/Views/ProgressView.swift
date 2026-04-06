@@ -20,7 +20,7 @@ struct ProgressView: View {
                     VStack(spacing: 12) {
                         HStack(spacing: 12) {
                             Image(systemName: "arrow.triangle.2.circlepath")
-                                .font(.system(size: 24, design: .rounded))
+                                .font(.appScaledSystem(size: 24, design: .rounded))
                                 .foregroundStyle(.orange)
                             
                             Text(message)
@@ -95,7 +95,7 @@ struct ProgressView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack {
                         Image(systemName: "trophy.fill")
-                            .font(.system(size: 16, design: .rounded))
+                            .font(.appScaledSystem(size: 16, design: .rounded))
                             .foregroundStyle(.yellow)
                         
                         Text("Achievements")
@@ -192,7 +192,7 @@ struct StreakBanner: View {
                     .frame(width: 64, height: 64)
                 
                 Image(systemName: "flame.fill")
-                    .font(.system(size: 28, design: .rounded))
+                    .font(.appScaledSystem(size: 28, design: .rounded))
                     .foregroundStyle(.orange)
             }
             
@@ -254,11 +254,11 @@ struct StatCard: View {
     var body: some View {
         VStack(spacing: 12) {
             Image(systemName: icon)
-                .font(.system(size: 28, design: .rounded))
+                .font(.appScaledSystem(size: 28, design: .rounded))
                 .foregroundStyle(color)
             
             Text(value)
-                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .font(.appScaledSystem(size: 24, weight: .bold, design: .rounded))
                 .minimumScaleFactor(0.85)
                 .lineLimit(1)
                 .foregroundStyle(.primary)
@@ -319,7 +319,7 @@ struct SessionCard: View {
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: session.themeIcon)
-                .font(.system(size: 24, design: .rounded))
+                .font(.appScaledSystem(size: 24, design: .rounded))
                 .foregroundStyle(colorForTheme(session.themeColor))
                 .frame(width: 44, height: 44)
                 .background(
@@ -348,7 +348,7 @@ struct SessionCard: View {
                 }
                 
                 Text(formattedDate)
-                    .font(.system(size: 11, design: .rounded))
+                    .font(.appScaledSystem(size: 11, design: .rounded))
                     .foregroundStyle(.tertiary)
             }
             
@@ -356,7 +356,7 @@ struct SessionCard: View {
             
             if session.hadMoodImprovement {
                 Image(systemName: "arrow.up.heart.fill")
-                    .font(.system(size: 20, design: .rounded))
+                    .font(.appScaledSystem(size: 20, design: .rounded))
                     .foregroundStyle(.green)
             }
         }
@@ -394,7 +394,7 @@ struct EmptyStateView: View {
     var body: some View {
         VStack(spacing: 16) {
             Image(systemName: "leaf.fill")
-                .font(.system(size: 48, design: .rounded))
+                .font(.appScaledSystem(size: 48, design: .rounded))
                 .foregroundStyle(.secondary)
             
             Text("No sessions yet")
@@ -435,7 +435,7 @@ struct AchievementsPreview: View {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .font(.appScaledSystem(size: 14, weight: .semibold, design: .rounded))
                     .foregroundStyle(.tertiary)
             }
             
@@ -448,12 +448,12 @@ struct AchievementsPreview: View {
                                 .frame(width: 56, height: 56)
                             
                             Image(systemName: achievement.iconName)
-                                .font(.system(size: 24, design: .rounded))
+                                .font(.appScaledSystem(size: 24, design: .rounded))
                                 .foregroundStyle(achievement.isUnlocked ? .yellow : .secondary)
                         }
                         
                         Text(achievement.title)
-                            .font(.system(size: 11, weight: .medium, design: .rounded))
+                            .font(.appScaledSystem(size: 11, weight: .medium, design: .rounded))
                             .foregroundStyle(achievement.isUnlocked ? .primary : .secondary)
                             .multilineTextAlignment(.center)
                             .lineLimit(2)
@@ -519,7 +519,7 @@ struct AchievementCard: View {
                     .frame(width: 72, height: 72)
                 
                 Image(systemName: achievement.iconName)
-                    .font(.system(size: 32, design: .rounded))
+                    .font(.appScaledSystem(size: 32, design: .rounded))
                     .foregroundStyle(achievement.isUnlocked ? .yellow : .secondary)
             }
             
@@ -536,7 +536,7 @@ struct AchievementCard: View {
                     .lineLimit(2)
                 
                 Text(achievement.requirement)
-                    .font(.system(size: 10, design: .rounded))
+                    .font(.appScaledSystem(size: 10, design: .rounded))
                     .foregroundStyle(.tertiary)
                     .multilineTextAlignment(.center)
             }

@@ -60,7 +60,7 @@ struct MoodTrendsChart: View {
             if moodSessions.isEmpty {
                 VStack(spacing: 12) {
                     Image(systemName: "chart.line.uptrend.xyaxis")
-                        .font(.system(size: 32, design: .rounded))
+                        .font(.appScaledSystem(size: 32, design: .rounded))
                         .foregroundStyle(.secondary)
                     
                     Text("Complete meditations with mood check-ins to see trends")
@@ -132,14 +132,14 @@ struct MoodTrendStat: View {
     var body: some View {
         VStack(spacing: 8) {
             Text(mood.emoji)
-                .font(.system(size: 32, design: .rounded))
+                .font(.appScaledSystem(size: 32, design: .rounded))
             
             Text(mood.displayName)
                 .font(.brandCaption)
                 .foregroundStyle(.primary)
             
             Text(label)
-                .font(.system(size: 10, design: .rounded))
+                .font(.appScaledSystem(size: 10, design: .rounded))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
         }

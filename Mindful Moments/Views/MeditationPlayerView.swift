@@ -230,7 +230,7 @@ struct MeditationPlayerView: View {
     private var playerTimerDisplayFont: Font {
         switch theme.name {
         case "Calm", "Sleep", "Focus", "Stress Relief", "Energy", "Gratitude":
-            return .system(size: 52, weight: .medium, design: .rounded)
+            return Font.appScaledSystem(size: 52, weight: .medium, design: .rounded)
         default:
             return .brandTimer
         }
@@ -241,18 +241,18 @@ struct MeditationPlayerView: View {
     }
     
     private var playerThemeTitleFont: Font {
-        if isCalmLightPlayer { return .system(size: 22, weight: .semibold, design: .rounded) }
-        if isCalmDarkPlayer { return .system(size: 22, weight: .semibold, design: .rounded) }
-        if isSleepLightPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
-        if isSleepDarkPlayer { return .system(size: 22, weight: .semibold, design: .rounded) }
-        if isFocusLightPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
-        if isFocusDarkPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
-        if isStressReliefLightPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
-        if isStressReliefDarkPlayer { return .system(size: 22, weight: .semibold, design: .rounded) }
-        if isEnergyLightPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
-        if isEnergyDarkPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
-        if isGratitudeLightPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
-        if isGratitudeDarkPlayer { return .system(size: 22, weight: .bold, design: .rounded) }
+        if isCalmLightPlayer { return Font.appScaledSystem(size: 22, weight: .semibold, design: .rounded) }
+        if isCalmDarkPlayer { return Font.appScaledSystem(size: 22, weight: .semibold, design: .rounded) }
+        if isSleepLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isSleepDarkPlayer { return Font.appScaledSystem(size: 22, weight: .semibold, design: .rounded) }
+        if isFocusLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isFocusDarkPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isStressReliefLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isStressReliefDarkPlayer { return Font.appScaledSystem(size: 22, weight: .semibold, design: .rounded) }
+        if isEnergyLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isEnergyDarkPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isGratitudeLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isGratitudeDarkPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
         return .brandTitle3
     }
     
@@ -374,7 +374,7 @@ struct MeditationPlayerView: View {
                 if !playerModel.isPlaying && playerModel.timeRemaining > 0 {
                     if isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudeDarkPlayer {
                         Text("Paused")
-                            .font(.system(size: 11, weight: .semibold, design: .rounded))
+                            .font(.appScaledSystem(size: 11, weight: .semibold, design: .rounded))
                             .textCase(.uppercase)
                             .foregroundStyle(playerSubtitleForeground)
                     } else if isGratitudeLightPlayer {
@@ -461,7 +461,7 @@ struct MeditationPlayerView: View {
                     )
                 
                 Image(systemName: playerModel.isPlaying ? "pause.fill" : "play.fill")
-                    .font(.system(size: 32, design: .rounded))
+                    .font(.appScaledSystem(size: 32, design: .rounded))
                     .foregroundStyle(.white)
                     .offset(x: playerModel.isPlaying ? 0 : 2)
             }
@@ -555,7 +555,7 @@ struct MeditationPlayerView: View {
             
             HStack(spacing: 12) {
                 Image(systemName: "speaker.fill")
-                    .font(.system(size: 12, design: .rounded))
+                    .font(.appScaledSystem(size: 12, design: .rounded))
                     .foregroundStyle(.tertiary)
                     .frame(width: 20)
                 
@@ -575,7 +575,7 @@ struct MeditationPlayerView: View {
                 .accessibilityValue("\(Int(audioManager.backgroundVolume * 1000)) percent")
                 
                 Image(systemName: "speaker.wave.3.fill")
-                    .font(.system(size: 12, design: .rounded))
+                    .font(.appScaledSystem(size: 12, design: .rounded))
                     .foregroundStyle(.tertiary)
                     .frame(width: 20)
             }
@@ -593,7 +593,7 @@ struct MeditationPlayerView: View {
         }) {
             HStack {
                 Image(systemName: audioManager.isBackgroundMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                    .font(.system(size: 14, design: .rounded))
+                    .font(.appScaledSystem(size: 14, design: .rounded))
                 
                 Text(audioManager.isBackgroundMuted ? "Unmute" : "Mute")
                     .font(.brandSubheadline)
@@ -643,7 +643,7 @@ struct MeditationPlayerView: View {
             }) {
                 HStack(spacing: 8) {
                     Image(systemName: audioManager.isBackgroundMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                        .font(.system(size: 14, design: .rounded))
+                        .font(.appScaledSystem(size: 14, design: .rounded))
                     
                     Text("Background Sounds")
                         .font(.brandSubheadline)
@@ -651,7 +651,7 @@ struct MeditationPlayerView: View {
                     Spacer()
                     
                     Image(systemName: showSoundControls ? "chevron.up" : "chevron.down")
-                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .font(.appScaledSystem(size: 12, weight: .semibold, design: .rounded))
                 }
                 .foregroundStyle(referenceRingChrome ? playerSoundBarForeground : Color.secondary)
                 .padding(.horizontal, 16)
@@ -751,9 +751,9 @@ struct MeditationPlayerView: View {
                 }) {
                     HStack(spacing: 5) {
                         Image(systemName: "chevron.left")
-                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                            .font(.appScaledSystem(size: 15, weight: .semibold, design: .rounded))
                         Text("Back")
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .font(.appScaledSystem(size: 16, weight: .medium, design: .rounded))
                     }
                     .foregroundStyle(
                         isCalmLightPlayer

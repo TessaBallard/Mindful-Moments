@@ -273,15 +273,15 @@ struct MeditationDetailsView: View {
     
     private var detailScreenTitleFont: Font {
         if isCalmLightReference {
-            return Font.system(size: 34, weight: .regular, design: .rounded)
+            return Font.appScaledSystem(size: 34, weight: .regular, design: .rounded)
         }
         if isEnergyDarkReference || isEnergyLightReference {
-            return .system(size: 34, weight: .bold, design: .rounded)
+            return Font.appScaledSystem(size: 34, weight: .bold, design: .rounded)
         }
         if isSleepDarkReference || isSleepLightReference || isFocusDarkReference || isFocusLightReference
             || isStressReliefDarkReference || isStressReliefLightReference
             || isGratitudeDarkReference || isGratitudeLightReference {
-            return .system(size: 34, weight: .regular, design: .rounded)
+            return Font.appScaledSystem(size: 34, weight: .regular, design: .rounded)
         }
         return .brandLargeTitle
     }
@@ -306,7 +306,7 @@ struct MeditationDetailsView: View {
             VStack(spacing: 28) {
                 VStack(spacing: 14) {
                     Image(systemName: theme.iconName)
-                        .font(.system(size: 56, weight: .regular, design: .rounded))
+                        .font(.appScaledSystem(size: 56, weight: .regular, design: .rounded))
                         .foregroundStyle(headerIconGlyphColor)
                         .frame(width: 112, height: 112)
                         .background(Circle().fill(headerIconCircleFill))
@@ -367,7 +367,7 @@ struct MeditationDetailsView: View {
                 }) {
                     HStack(spacing: 10) {
                         Image(systemName: "play.fill")
-                            .font(.system(size: 17, weight: .semibold, design: .rounded))
+                            .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                         
                         Text("Start Session")
                             .font(.brandHeadline)
@@ -440,7 +440,7 @@ struct MeditationDetailsView: View {
                     dismiss()
                 } label: {
                     Image(systemName: "chevron.left")
-                        .font(.system(size: 15, weight: .semibold, design: .rounded))
+                        .font(.appScaledSystem(size: 15, weight: .semibold, design: .rounded))
                         .foregroundStyle(.white)
                         .frame(width: 40, height: 40)
                         .background(
@@ -789,7 +789,7 @@ struct ExpectationRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: icon)
-                .font(.system(size: 18, weight: .regular, design: .rounded))
+                .font(.appScaledSystem(size: 18, weight: .regular, design: .rounded))
                 .foregroundStyle(tint)
                 .frame(width: 26, alignment: .center)
             

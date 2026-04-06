@@ -62,7 +62,7 @@ struct WeeklyProgressChart: View {
                 
                 HStack(spacing: 4) {
                     Image(systemName: "calendar")
-                        .font(.system(size: 14, design: .rounded))
+                        .font(.appScaledSystem(size: 14, design: .rounded))
                         .foregroundStyle(.secondary)
                     
                     Text("Last 7 days")

@@ -55,7 +55,7 @@ struct MoodCheckInView: View {
                         dismiss()
                     }) {
                         Text("Cancel")
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .font(.appScaledSystem(size: 16, weight: .medium, design: .rounded))
                             .foregroundStyle(isDark ? Color.white : Color(red: 0.35, green: 0.38, blue: 0.42))
                             .padding(.horizontal, 14)
                             .padding(.vertical, 8)
@@ -87,12 +87,12 @@ struct MoodCheckInView: View {
                             
                             VStack(spacing: 10) {
                                 Text(title)
-                                    .font(.system(size: 26, weight: .bold, design: .rounded))
+                                    .font(.appScaledSystem(size: 26, weight: .bold, design: .rounded))
                                     .foregroundStyle(isDark ? Color.white : Color.black)
                                     .multilineTextAlignment(.center)
                                 
                                 Text(subtitle)
-                                    .font(.system(size: 16, weight: .regular, design: .rounded))
+                                    .font(.appScaledSystem(size: 16, weight: .regular, design: .rounded))
                                     .foregroundStyle(isDark ? Self.mutedBlueGray : Color(red: 0.45, green: 0.48, blue: 0.52))
                                     .multilineTextAlignment(.center)
                                     .padding(.horizontal, 28)
@@ -148,7 +148,7 @@ struct MoodCheckInView: View {
                         HStack(spacing: 8) {
                             if let m = selectedMood {
                                 Text(m.emoji)
-                                    .font(.system(size: 20, design: .rounded))
+                                    .font(.appScaledSystem(size: 20, design: .rounded))
                             }
                             Text("Continue")
                                 .font(.brandHeadline)
@@ -188,7 +188,7 @@ struct MoodCheckInView: View {
                         onSkip()
                     }) {
                         Text("Skip")
-                            .font(.system(size: 17, weight: .medium, design: .rounded))
+                            .font(.appScaledSystem(size: 17, weight: .medium, design: .rounded))
                             .foregroundStyle(Self.accentBlue)
                     }
                     .buttonStyle(.plain)
@@ -271,17 +271,17 @@ struct MoodCard: View {
         Button(action: onTap) {
             VStack(spacing: 6) {
                 Text(mood.emoji)
-                    .font(.system(size: 28, design: .rounded))
+                    .font(.appScaledSystem(size: 28, design: .rounded))
                 
                 Text(mood.displayName)
-                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                    .font(.appScaledSystem(size: 11, weight: .semibold, design: .rounded))
                     .foregroundStyle(isDark ? Color.white : Color.black)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
                 Text(mood.description)
-                    .font(.system(size: 9, weight: .regular, design: .rounded))
+                    .font(.appScaledSystem(size: 9, weight: .regular, design: .rounded))
                     .foregroundStyle(isDark ? Self.mutedBlueGray : Color(red: 0.45, green: 0.48, blue: 0.52))
                     .multilineTextAlignment(.center)
                     .lineLimit(2)

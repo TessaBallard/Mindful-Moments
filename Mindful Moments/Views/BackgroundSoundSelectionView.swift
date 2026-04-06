@@ -72,7 +72,7 @@ struct BackgroundSoundSelectionView: View {
                         .frame(width: 80, height: 80)
                         .shadow(color: .black.opacity(colorScheme == .dark ? 0.35 : 0.14), radius: 10, x: 0, y: 4)
                     Image(systemName: "waveform")
-                        .font(.system(size: 38, weight: .bold, design: .rounded))
+                        .font(.appScaledSystem(size: 38, weight: .bold, design: .rounded))
                         .foregroundStyle(colorScheme == .dark ? Color.white : Color(red: 0.06, green: 0.22, blue: 0.48))
                         .symbolRenderingMode(.monochrome)
                 }
@@ -97,7 +97,7 @@ struct BackgroundSoundSelectionView: View {
             
             HStack(spacing: 12) {
                 Image(systemName: previewWithVoice ? "mic.fill" : "mic.slash.fill")
-                    .font(.system(size: 16, design: .rounded))
+                    .font(.appScaledSystem(size: 16, design: .rounded))
                     .foregroundStyle(previewWithVoice ? .cyan : .secondary)
                 
                 Toggle("Preview with Voice", isOn: $previewWithVoice)
@@ -230,14 +230,14 @@ struct BackgroundSoundCard: View {
                         .frame(width: 64, height: 64)
                     
                     Image(systemName: sound.iconName)
-                        .font(.system(size: 28, design: .rounded))
+                        .font(.appScaledSystem(size: 28, design: .rounded))
                         .foregroundStyle(.primary)
                 }
                 .frame(width: 72, height: 72)
                 .overlay(alignment: .topTrailing) {
                     if isSelected {
                         Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 24, weight: .semibold, design: .rounded))
+                            .font(.appScaledSystem(size: 24, weight: .semibold, design: .rounded))
                             .symbolRenderingMode(.palette)
                             .foregroundStyle(.white, Color(red: 0, green: 0.478, blue: 1))
                             .offset(x: 4, y: -4)
@@ -252,7 +252,7 @@ struct BackgroundSoundCard: View {
                         .lineLimit(1)
                     
                     Text(sound.description)
-                        .font(.system(size: 11, design: .rounded))
+                        .font(.appScaledSystem(size: 11, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
@@ -263,7 +263,7 @@ struct BackgroundSoundCard: View {
                     Button(action: onPreview) {
                         HStack(spacing: 4) {
                             Image(systemName: isPreviewing ? "stop.fill" : "play.fill")
-                                .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                .font(.appScaledSystem(size: 10, weight: .semibold, design: .rounded))
                             Text(isPreviewing ? "Stop" : "Preview")
                                 .font(.brandCaption)
                                 .fontWeight(.semibold)

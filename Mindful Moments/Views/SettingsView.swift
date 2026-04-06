@@ -44,7 +44,7 @@ struct SettingsView: View {
                         Spacer()
                         
                         Image(systemName: "chevron.right")
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .font(.appScaledSystem(size: 14, weight: .semibold, design: .rounded))
                             .foregroundStyle(.tertiary)
                     }
                 }

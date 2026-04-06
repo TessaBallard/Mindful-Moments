@@ -62,7 +62,7 @@ struct JournalView: View {
                     showingNewEntry = true
                 }) {
                     Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 24, design: .rounded))
+                        .font(.appScaledSystem(size: 24, design: .rounded))
                         .foregroundStyle(.primary)
                 }
             }
@@ -92,7 +92,7 @@ struct EmptyJournalView: View {
     var body: some View {
         VStack(spacing: 16) {
             Image(systemName: "book.closed.fill")
-                .font(.system(size: 48, design: .rounded))
+                .font(.appScaledSystem(size: 48, design: .rounded))
                 .foregroundStyle(.secondary)
             
             Text("No journal entries yet")
@@ -133,10 +133,10 @@ struct JournalEntryCard: View {
                 if let themeName = entry.themeName {
                     HStack(spacing: 6) {
                         Image(systemName: entry.themeIcon ?? "leaf.fill")
-                            .font(.system(size: 12, design: .rounded))
+                            .font(.appScaledSystem(size: 12, design: .rounded))
                         
                         Text(themeName)
-                            .font(.system(size: 12, design: .rounded))
+                            .font(.appScaledSystem(size: 12, design: .rounded))
                     }
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 10)

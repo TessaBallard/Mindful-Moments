@@ -54,7 +54,7 @@ struct WelcomeView: View {
                         hasSeenWelcome = true
                     }) {
                         Text("GET STARTED")
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .font(.appScaledSystem(size: 18, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                             .frame(maxWidth: geometry.size.width > 600 ? 400 : .infinity)
                             .frame(height: 56)

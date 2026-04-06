@@ -80,7 +80,7 @@ struct BreathingExerciseView: View {
                         .frame(width: 120, height: 120)
                     
                     Image(systemName: "wind")
-                        .font(.system(size: 56, design: .rounded))
+                        .font(.appScaledSystem(size: 56, design: .rounded))
                         .foregroundStyle(colorScheme == .dark ? Color(red: 0.400, green: 0.900, blue: 0.900) : Color(red: 0.000, green: 0.500, blue: 0.550))
                 }
                 
@@ -150,7 +150,7 @@ struct BreathingExerciseView: View {
             }) {
                 HStack(spacing: 12) {
                     Image(systemName: "play.fill")
-                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                        .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                     Text("Start Breathing")
                         .font(.brandHeadline)
                         .fontWeight(.semibold)

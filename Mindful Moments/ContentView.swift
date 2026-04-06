@@ -87,7 +87,7 @@ private struct ThemeIconBloom: View {
                         .stroke(Color.white.opacity(isDark ? 0.12 : 0.35), lineWidth: 1)
                 }
             Image(systemName: systemName)
-                .font(.system(size: iconFontSize, weight: .semibold, design: .rounded))
+                .font(.appScaledSystem(size: iconFontSize, weight: .semibold, design: .rounded))
                 .foregroundStyle(color)
         }
     }
@@ -147,11 +147,11 @@ struct ContentView: View {
                     ZStack(alignment: .top) {
                         VStack(spacing: 6) {
                             Text("Mindful Moments")
-                                .font(.system(size: 30, weight: .bold, design: .rounded))
+                                .font(.appScaledSystem(size: 30, weight: .bold, design: .rounded))
                                 .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
                             
                             Text("Pause. Breathe. Be.")
-                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                .font(.appScaledSystem(size: 16, weight: .medium, design: .rounded))
                                 .foregroundStyle(HomeGlass.secondaryText(isDark: isHomeDark))
                         }
                         .frame(maxWidth: .infinity)
@@ -162,7 +162,7 @@ struct ContentView: View {
                             Spacer()
                             NavigationLink(destination: SettingsView(notificationManager: notificationManager, backgroundSoundManager: backgroundSoundManager)) {
                                 Image(systemName: "gearshape.fill")
-                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                    .font(.appScaledSystem(size: 20, weight: .semibold, design: .rounded))
                                     .foregroundStyle(isHomeDark ? Color.white : Color(red: 0.05, green: 0.35, blue: 0.72))
                                     .frame(width: 46, height: 46)
                                     .background {
@@ -190,15 +190,15 @@ struct ContentView: View {
                     if shouldShowBackgroundSoundTip {
                         HStack(alignment: .top, spacing: 14) {
                             Image(systemName: "lightbulb.fill")
-                                .font(.system(size: 22, design: .rounded))
+                                .font(.appScaledSystem(size: 22, design: .rounded))
                                 .foregroundStyle(Color(red: 1.0, green: 0.88, blue: 0.2))
                             
                             VStack(alignment: .leading, spacing: 6) {
                                 Text("Did you know?")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                                    .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                                     .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
                                 Text("Choose from 8 background sounds in Settings — tap the gear icon above.")
-                                    .font(.system(size: 14, weight: .regular, design: .rounded))
+                                    .font(.appScaledSystem(size: 14, weight: .regular, design: .rounded))
                                     .foregroundStyle(HomeGlass.secondaryText(isDark: isHomeDark))
                                     .fixedSize(horizontal: false, vertical: true)
                             }
@@ -211,7 +211,7 @@ struct ContentView: View {
                                 }
                             }) {
                                 Image(systemName: "xmark")
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .font(.appScaledSystem(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(HomeGlass.secondaryText(isDark: isHomeDark))
                                     .frame(width: 30, height: 30)
                                     .background {
@@ -245,11 +245,11 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             HStack(spacing: 8) {
                                 Image(systemName: "clock.fill")
-                                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                    .font(.appScaledSystem(size: 15, weight: .semibold, design: .rounded))
                                     .foregroundStyle(isHomeDark ? Color(red: 0.62, green: 0.55, blue: 1.0) : Color(red: 0.42, green: 0.28, blue: 0.78))
                                 
                                 Text("Recently Played")
-                                    .font(.system(size: 17, weight: .bold, design: .rounded))
+                                    .font(.appScaledSystem(size: 17, weight: .bold, design: .rounded))
                                     .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
                             }
                             .padding(.horizontal, 20)
@@ -272,11 +272,11 @@ struct ContentView: View {
                         VStack(alignment: .leading, spacing: 16) {
                             HStack {
                                 Image(systemName: "star.fill")
-                                    .font(.system(size: 16, design: .rounded))
+                                    .font(.appScaledSystem(size: 16, design: .rounded))
                                     .foregroundStyle(.yellow)
                                 
                                 Text("Your Favorites")
-                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .font(.appScaledSystem(size: 20, weight: .bold, design: .rounded))
                                     .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
                                 
                                 Spacer()
@@ -312,7 +312,7 @@ struct ContentView: View {
                     // All Meditations Section
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Meditations")
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .font(.appScaledSystem(size: 20, weight: .bold, design: .rounded))
                             .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
                             .padding(.horizontal, 20)
                         
@@ -347,12 +347,12 @@ struct ContentView: View {
                                         .fill(Color(red: 0.48, green: 0.38, blue: 1.0).opacity(0.9))
                                         .frame(width: 40, height: 40)
                                     Image(systemName: "chart.bar.fill")
-                                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                                        .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                                         .foregroundStyle(.white)
                                 }
                                 
                                 Text("Progress")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                                    .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                                     .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
                                 
                                 Spacer(minLength: 0)
@@ -372,12 +372,12 @@ struct ContentView: View {
                                         .fill(Color(red: 1.0, green: 0.58, blue: 0.22).opacity(0.95))
                                         .frame(width: 40, height: 40)
                                     Image(systemName: "book.fill")
-                                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                                        .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                                         .foregroundStyle(.white)
                                 }
                                 
                                 Text("Journal")
-                                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                                    .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                                     .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
                                 
                                 Spacer(minLength: 0)
@@ -454,11 +454,11 @@ struct MeditationThemeCard: View {
                     
                     VStack(spacing: 6) {
                         Text(theme.name)
-                            .font(.system(size: 17, weight: .semibold, design: .rounded))
+                            .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                             .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
                         
                         Text(theme.description)
-                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                            .font(.appScaledSystem(size: 12, weight: .medium, design: .rounded))
                             .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
                             .multilineTextAlignment(.center)
                             .lineLimit(2)
@@ -492,7 +492,7 @@ struct MeditationThemeCard: View {
                             }
                         
                         Image(systemName: isFavorite ? "star.fill" : "star")
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .font(.appScaledSystem(size: 14, weight: .semibold, design: .rounded))
                             .foregroundStyle(isFavorite ? Color(red: 1.0, green: 0.86, blue: 0.2) : HomeGlass.secondaryText(isDark: isDark))
                             .scaleEffect(isFavorite ? 1.08 : 1.0)
                     }
@@ -544,18 +544,18 @@ struct QuickBreathingCard: View {
             
             VStack(alignment: .leading, spacing: 6) {
                 Text("Quick Breathing")
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .font(.appScaledSystem(size: 18, weight: .semibold, design: .rounded))
                     .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
                 
                 Text("1-3 minute calm reset")
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .font(.appScaledSystem(size: 14, weight: .medium, design: .rounded))
                     .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
             }
             
             Spacer(minLength: 8)
             
             Image(systemName: "chevron.right")
-                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .font(.appScaledSystem(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
                 .frame(width: 36, height: 36)
                 .background {
@@ -613,11 +613,11 @@ struct RecentlyPlayedCard: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Text(theme.name)
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .font(.appScaledSystem(size: 18, weight: .semibold, design: .rounded))
                         .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
                     
                     Text(sessionSubtitle)
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .font(.appScaledSystem(size: 14, weight: .medium, design: .rounded))
                         .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
                 }
                 
@@ -629,7 +629,7 @@ struct RecentlyPlayedCard: View {
                         .frame(width: 44, height: 44)
                         .shadow(color: accent.opacity(0.45), radius: 8, x: 0, y: 4)
                     Image(systemName: "play.fill")
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .font(.appScaledSystem(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .offset(x: 2)
                 }

@@ -45,7 +45,7 @@ struct CompletionCelebrationView: View {
                                 .frame(width: 120, height: 120)
                             
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 64, design: .rounded))
+                                .font(.appScaledSystem(size: 64, design: .rounded))
                                 .foregroundStyle(.green)
                         }
                         .scaleEffect(showContent ? 1.0 : 0.5)
