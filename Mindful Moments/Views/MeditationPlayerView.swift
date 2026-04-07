@@ -106,7 +106,6 @@ struct MeditationPlayerView: View {
     }
     
     private static let calmPlayerRingTrack = Color(red: 0.14, green: 0.52, blue: 0.47)
-    private static let calmPlayerRingProgress = Color(red: 0.82, green: 0.97, blue: 0.93)
     private static let calmPlayerAccentButton = Color(red: 26 / 255, green: 188 / 255, blue: 156 / 255)
     private static let calmPlayerTitleText = Color(red: 0.05, green: 0.12, blue: 0.11)
     private static let calmPlayerSubtitleText = Color(red: 0.35, green: 0.42, blue: 0.41)
@@ -179,8 +178,7 @@ struct MeditationPlayerView: View {
     }
     
     private var playerRingTrackColor: Color {
-        if isCalmLightPlayer { return Self.calmPlayerRingTrack }
-        if isCalmDarkPlayer { return Color.white.opacity(0.22) }
+        if isCalmPlayer { return Color.white.opacity(0.22) }
         if isSleepLightPlayer { return Self.sleepPlayerPurpleTop.opacity(0.38) }
         if isSleepDarkPlayer { return Self.sleepPlayerPurpleTop.opacity(0.38) }
         if isFocusLightPlayer { return Self.focusPlayerBlue.opacity(0.38) }
@@ -195,8 +193,7 @@ struct MeditationPlayerView: View {
     }
     
     private var playerRingProgressColor: Color {
-        if isCalmLightPlayer { return Self.calmPlayerRingProgress }
-        if isCalmDarkPlayer { return Self.calmPlayerAccentButton }
+        if isCalmPlayer { return Self.calmPlayerAccentButton }
         if isSleepLightPlayer { return Color(red: 0.40, green: 0.30, blue: 0.82) }
         if isSleepDarkPlayer { return Color(red: 0.40, green: 0.30, blue: 0.82) }
         if isFocusLightPlayer { return Color(red: 0, green: 0.42, blue: 0.95) }
@@ -1009,7 +1006,7 @@ struct MeditationPlayerView: View {
                     
                     Circle()
                         .stroke(
-                            (isCalmPlayer ? (isCalmLightPlayer ? Self.calmPlayerRingTrack : Color.white.opacity(0.22)) : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? playerRingTrackColor : primaryColorForTheme(theme.name).opacity(0.2))),
+                            (isCalmPlayer ? Color.white.opacity(0.22) : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? playerRingTrackColor : primaryColorForTheme(theme.name).opacity(0.2))),
                             style: StrokeStyle(lineWidth: 4)
                         )
                         .frame(width: 60, height: 60)
@@ -1017,7 +1014,7 @@ struct MeditationPlayerView: View {
                     Circle()
                         .trim(from: 0, to: loadingProgress)
                         .stroke(
-                            isCalmPlayer ? (isCalmLightPlayer ? Self.calmPlayerRingProgress : Self.calmPlayerAccentButton) : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? playerRingProgressColor : primaryColorForTheme(theme.name)),
+                            isCalmPlayer ? Self.calmPlayerAccentButton : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? playerRingProgressColor : primaryColorForTheme(theme.name)),
                             style: StrokeStyle(lineWidth: 4, lineCap: .round)
                         )
                         .frame(width: 60, height: 60)

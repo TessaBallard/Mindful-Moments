@@ -86,3 +86,5 @@
 ## 11. No Modules
 
 - Don't create extra modules or packages. Keep all files in the same target and project.
+
+Use emojis where appropriate in explanations and comments.

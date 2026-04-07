@@ -443,12 +443,12 @@ struct MeditationThemeCard: View {
             backgroundSoundManager: backgroundSoundManager
         )) {
             ZStack(alignment: .topTrailing) {
-                VStack(spacing: 14) {
+                VStack(spacing: 12) {
                     ThemeIconBloom(
                         color: accent,
                         systemName: theme.iconName,
-                        iconFontSize: 28,
-                        circleDiameter: 60,
+                        iconFontSize: 26,
+                        circleDiameter: 56,
                         isDark: isDark
                     )
                     
@@ -456,17 +456,21 @@ struct MeditationThemeCard: View {
                         Text(theme.name)
                             .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
                             .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.85)
+                            .frame(height: 44, alignment: .center)
                         
                         Text(theme.description)
                             .font(.appScaledSystem(size: 12, weight: .medium, design: .rounded))
                             .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
                             .multilineTextAlignment(.center)
                             .lineLimit(2)
-                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(height: 32, alignment: .top)
                     }
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 20)
+                .padding(.vertical, 16)
                 .padding(.horizontal, 14)
                 .background {
                     LiquidGlassCardBackground(isDark: isDark, cornerRadius: HomeGlass.cardRadius)

@@ -12,6 +12,7 @@ struct BreathingExerciseView: View {
     @State private var isExercising = false
     @State private var breathPhase: BreathPhase = .inhale
     @State private var breathCount = 0
+    @State private var exerciseStartDate: Date?
     @State private var showContent = false
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.dismiss) private var dismiss
@@ -157,13 +158,17 @@ struct BreathingExerciseView: View {
                 }
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
-                .background(.cyan)
-                .cornerRadius(16)
-                .shadow(color: .cyan.opacity(0.4), radius: 12, x: 0, y: 6)
+                .padding(.vertical, 16)
+                .background {
+                    RoundedRectangle(cornerRadius: 26, style: .continuous)
+                        .fill(Color.cyan)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+                .shadow(color: Color.cyan.opacity(0.35), radius: 10, x: 0, y: 5)
             }
             .padding(.horizontal, 40)
             .padding(.bottom, 60)
+            .buttonStyle(.plain)
             .accessibilityLabel("Start breathing exercise")
             .accessibilityHint("Double tap to begin \(selectedDuration) minute breathing exercise")
         }
@@ -174,12 +179,14 @@ struct BreathingExerciseView: View {
             Spacer()
             
             VStack(spacing: 8) {
-                Text("\(breathCount)")
-                    .font(.brandTimer)
-                    .monospacedDigit()
-                    .foregroundStyle(.primary)
+                TimelineView(.periodic(from: .now, by: 1)) { context in
+                    Text(sessionCountdownString(at: context.date))
+                        .font(.brandTimer)
+                        .monospacedDigit()
+                        .foregroundStyle(.primary)
+                }
                 
-                Text("breaths remaining")
+                Text("Time remaining")
                     .font(.brandCaption)
                     .foregroundStyle(.secondary)
             }
@@ -217,16 +224,37 @@ struct BreathingExerciseView: View {
                     .font(.brandHeadline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
-                    .frame(width: 120)
-                    .padding(.vertical, 14)
-                    .background(.cyan)
-                    .cornerRadius(12)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background {
+                        RoundedRectangle(cornerRadius: 26, style: .continuous)
+                            .fill(Color.cyan)
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+                    .shadow(color: Color.cyan.opacity(0.35), radius: 10, x: 0, y: 5)
             }
+            .padding(.horizontal, 40)
             .padding(.bottom, 60)
+            .buttonStyle(.plain)
         }
     }
     
+    private func sessionCountdownString(at date: Date) -> String {
+        let totalSeconds = selectedDuration * 60
+        guard let start = exerciseStartDate else {
+            let m = totalSeconds / 60
+            let s = totalSeconds % 60
+            return "\(m):\(String(format: "%02d", s))"
+        }
+        let elapsed = Int(date.timeIntervalSince(start))
+        let remaining = max(0, totalSeconds - elapsed)
+        let m = remaining / 60
+        let s = remaining % 60
+        return "\(m):\(String(format: "%02d", s))"
+    }
+    
     private func startExercise() {
+        exerciseStartDate = Date()
         isExercising = true
         breathCount = selectedDuration * 4
         cycleBreath()
