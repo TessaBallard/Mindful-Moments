@@ -493,7 +493,15 @@ struct AchievementsListView: View {
             }
             .padding()
         }
-        .navigationTitle("Achievements")
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Achievements")
+                    .font(.brandLargeTitle)
+                    .foregroundStyle(.primary)
+            }
+        }
         .background(
             LinearGradient(
                 colors: colorScheme == .dark

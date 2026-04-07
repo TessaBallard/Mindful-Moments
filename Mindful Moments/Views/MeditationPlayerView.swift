@@ -182,7 +182,7 @@ struct MeditationPlayerView: View {
         if isCalmLightPlayer { return Self.calmPlayerRingTrack }
         if isCalmDarkPlayer { return Color.white.opacity(0.22) }
         if isSleepLightPlayer { return Self.sleepPlayerPurpleTop.opacity(0.38) }
-        if isSleepDarkPlayer { return Color.white.opacity(0.22) }
+        if isSleepDarkPlayer { return Self.sleepPlayerPurpleTop.opacity(0.38) }
         if isFocusLightPlayer { return Self.focusPlayerBlue.opacity(0.38) }
         if isFocusDarkPlayer { return Color.white.opacity(0.2) }
         if isStressReliefLightPlayer { return Self.stressPlayerAccent.opacity(0.38) }
@@ -198,7 +198,7 @@ struct MeditationPlayerView: View {
         if isCalmLightPlayer { return Self.calmPlayerRingProgress }
         if isCalmDarkPlayer { return Self.calmPlayerAccentButton }
         if isSleepLightPlayer { return Color(red: 0.40, green: 0.30, blue: 0.82) }
-        if isSleepDarkPlayer { return Color(red: 0.92, green: 0.90, blue: 1.0) }
+        if isSleepDarkPlayer { return Color(red: 0.40, green: 0.30, blue: 0.82) }
         if isFocusLightPlayer { return Color(red: 0, green: 0.42, blue: 0.95) }
         if isFocusDarkPlayer { return Self.focusPlayerBlue }
         if isStressReliefLightPlayer { return Self.stressPlayerAccent }
