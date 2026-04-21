@@ -16,6 +16,7 @@ struct MeditationPlayerView: View {
     let moodBefore: Mood?
     let achievementsManager: AchievementsManager
     let backgroundSoundManager: BackgroundSoundManager
+    var guidedVoiceEnabled: Bool = true
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
@@ -905,7 +906,7 @@ struct MeditationPlayerView: View {
                 }
                 
                 // Start audio guidance with theme-specific file and duration
-                audioManager.startMeditation(themeName: theme.name, duration: duration, backgroundSound: backgroundSoundManager.selectedSound)
+                audioManager.startMeditation(themeName: theme.name, duration: duration, backgroundSound: backgroundSoundManager.selectedSound, guidedVoice: guidedVoiceEnabled)
             }
         }
     }

@@ -15,6 +15,7 @@ struct MeditationDetailsView: View {
     let backgroundSoundManager: BackgroundSoundManager
     
     @State private var selectedDuration = 5
+    @State private var guidedVoiceEnabled = true
     @State private var showingMoodCheckIn = false
     @State private var navigateToPlayer = false
     @State private var selectedMoodBefore: Mood? = nil
@@ -272,18 +273,18 @@ struct MeditationDetailsView: View {
     }
     
     private var detailScreenTitleFont: Font {
-        if isCalmLightReference {
-            return Font.appScaledSystem(size: 34, weight: .regular, design: .rounded)
-        }
-        if isEnergyDarkReference || isEnergyLightReference {
-            return Font.appScaledSystem(size: 34, weight: .bold, design: .rounded)
-        }
-        if isSleepDarkReference || isSleepLightReference || isFocusDarkReference || isFocusLightReference
-            || isStressReliefDarkReference || isStressReliefLightReference
-            || isGratitudeDarkReference || isGratitudeLightReference {
-            return Font.appScaledSystem(size: 34, weight: .regular, design: .rounded)
-        }
-        return .brandLargeTitle
+        return Font.appScaledSystem(size: 34, weight: .bold, design: .rounded)
+    }
+
+    private var toggleTintColor: Color {
+        if theme.name == "Calm" { return Self.calmAccentTeal }
+        if isSleepDarkReference { return Color(red: 0.50, green: 0.68, blue: 0.98) }
+        if isSleepLightReference { return Color(red: 97/255, green: 85/255, blue: 245/255) }
+        if isFocusDarkReference || isFocusLightReference { return Self.focusAccentBlue }
+        if isStressReliefDarkReference || isStressReliefLightReference { return Self.stressAccentPink }
+        if isEnergyDarkReference || isEnergyLightReference { return Self.energyAccentOrange }
+        if isGratitudeDarkReference || isGratitudeLightReference { return Self.gratitudeGold }
+        return .accentColor
     }
     
     private var toolbarBackButtonFill: Color {
@@ -346,6 +347,50 @@ struct MeditationDetailsView: View {
                 }
                 .padding(.horizontal, 20)
                 
+                VStack(spacing: 8) {
+                    HStack(spacing: 12) {
+                        Image(systemName: guidedVoiceEnabled ? "waveform.circle.fill" : "waveform.slash")
+                            .font(.appScaledSystem(size: 20, weight: .medium, design: .rounded))
+                            .foregroundStyle(guidedVoiceEnabled ? toggleTintColor : chooseDurationLabelColor.opacity(0.55))
+                            .frame(width: 28)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Guided Voice-over")
+                                .font(.brandHeadline)
+                                .foregroundStyle(detailTitleColor)
+                            Text(
+                                guidedVoiceEnabled
+                                    ? "Voice + ambient sounds"
+                                    : (backgroundSoundManager.selectedSound == .none ? "Timer only — no audio" : "Ambient sounds only")
+                            )
+                            .font(.brandCaption)
+                            .foregroundStyle(detailSubtitleColor)
+                        }
+                        Spacer()
+                        Toggle("", isOn: $guidedVoiceEnabled)
+                            .labelsHidden()
+                            .tint(toggleTintColor)
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 14)
+                    .background {
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(Color.white.opacity(colorScheme == .dark ? 0.08 : 0.22))
+                    }
+
+                    if !guidedVoiceEnabled && backgroundSoundManager.selectedSound == .none {
+                        HStack(spacing: 6) {
+                            Image(systemName: "info.circle")
+                                .font(.appScaledSystem(size: 12, weight: .medium, design: .rounded))
+                            Text("Select a background sound to hear audio during this session.")
+                                .font(.brandCaption)
+                        }
+                        .foregroundStyle(detailSubtitleColor.opacity(0.85))
+                        .padding(.horizontal, 28)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                .padding(.horizontal, 20)
+
                 VStack(alignment: .leading, spacing: 14) {
                     Text("What to Expect")
                         .font(.brandHeadline)
@@ -485,7 +530,8 @@ struct MeditationDetailsView: View {
                 journalStore: journalStore,
                 moodBefore: selectedMoodBefore,
                 achievementsManager: achievementsManager,
-                backgroundSoundManager: backgroundSoundManager
+                backgroundSoundManager: backgroundSoundManager,
+                guidedVoiceEnabled: guidedVoiceEnabled
             )
         }
     }

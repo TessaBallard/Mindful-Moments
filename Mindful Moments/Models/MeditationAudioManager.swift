@@ -38,8 +38,14 @@ class MeditationAudioManager: NSObject, AVAudioPlayerDelegate {
         }
     }
     
-    /// Start meditation with audio file based on theme and duration
-    func startMeditation(themeName: String, duration: Int, backgroundSound: BackgroundSound = .river) {
+    /// Start meditation with audio file based on theme and duration.
+    /// Pass `guidedVoice: false` to play background ambient sound only.
+    func startMeditation(themeName: String, duration: Int, backgroundSound: BackgroundSound = .river, guidedVoice: Bool = true) {
+        if !guidedVoice {
+            startBackgroundOnly(duration: duration, backgroundSound: backgroundSound)
+            return
+        }
+
         var themeFileName: String
         if themeName == "Stress Relief" {
             themeFileName = "stress"
@@ -119,6 +125,46 @@ class MeditationAudioManager: NSObject, AVAudioPlayerDelegate {
                 print("❌ Failed to play audio: \(error)")
                 audioError = "Failed to load audio. Please try again."
             }
+        }
+    }
+
+    /// Play background ambient sound only (no guided voice).
+    private func startBackgroundOnly(duration: Int, backgroundSound: BackgroundSound) {
+        // "None" selected = silent session — just run the timer with no audio, no error
+        if backgroundSound == .none {
+            isPlaying = true
+            isSpeaking = false
+            print("▶️ Silent session (no voice, no background sound)")
+            return
+        }
+
+        guard let backgroundFileName = backgroundSound.fileName(for: duration),
+              let backgroundURL = Bundle.main.url(forResource: backgroundFileName, withExtension: nil) else {
+            print("❌ Background file not found for background-only mode")
+            audioError = "Background audio not found. Please try again."
+            return
+        }
+
+        audioError = nil
+
+        do {
+            backgroundPlayer = try AVAudioPlayer(contentsOf: backgroundURL)
+            backgroundPlayer?.delegate = self
+            // Use a more audible volume for background-only mode
+            let vol: Float = isBackgroundMuted ? 0.0 : max(backgroundVolume, 0.5)
+            backgroundPlayer?.volume = vol
+            backgroundVolume = isBackgroundMuted ? backgroundVolume : max(backgroundVolume, 0.5)
+            backgroundPlayer?.numberOfLoops = 0
+            backgroundPlayer?.prepareToPlay()
+            backgroundPlayer?.play()
+
+            isPlaying = true
+            isSpeaking = false
+
+            print("▶️ Playing background-only meditation at volume \(vol)")
+        } catch {
+            print("❌ Failed to play background audio: \(error)")
+            audioError = "Failed to load audio. Please try again."
         }
     }
     
