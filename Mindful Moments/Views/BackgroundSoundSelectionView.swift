@@ -194,7 +194,6 @@ struct BackgroundSoundCard: View {
     let onPreview: () -> Void
     
     @Environment(\.colorScheme) private var colorScheme
-    @State private var isPressed = false
     
     private var isDark: Bool { colorScheme == .dark }
     
@@ -324,22 +323,8 @@ struct BackgroundSoundCard: View {
             )
             .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.3 : 0.1), radius: 8, x: 0, y: 4)
             .shadow(color: isSelected ? Color.blue.opacity(0.2) : Color.clear, radius: 12, x: 0, y: 6)
-            .scaleEffect(isPressed ? 0.97 : 1.0)
         }
-        .buttonStyle(PlainButtonStyle())
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = true
-                    }
-                }
-                .onEnded { _ in
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = false
-                    }
-                }
-        )
+        .buttonStyle(SpringScaleButtonStyle())
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(sound.displayName) background sound")
         .accessibilityHint("\(sound.description). \(isSelected ? "Currently selected." : "Double tap to select.") Tap preview button to hear sample.")

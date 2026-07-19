@@ -237,6 +237,7 @@ struct ContentView: View {
                     NavigationLink(destination: BreathingExerciseView()) {
                         QuickBreathingCard()
                     }
+                    .buttonStyle(SpringScaleButtonStyle())
                     .padding(.horizontal, 20)
                     
                     // Recently Played
@@ -337,7 +338,7 @@ struct ContentView: View {
                         }
                         .padding(.horizontal, 20)
                     }
-                    
+
                     // Progress & Journal — liquid glass pills at bottom
                     HStack(spacing: 12) {
                         NavigationLink(destination: ProgressView(sessionStore: sessionStore)) {
@@ -393,7 +394,9 @@ struct ContentView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 8)
                 }
-                .padding(.bottom, 28)
+                .padding(.bottom, 40)
+                .frame(maxWidth: .infinity)
+                .background(Color.black.opacity(0.001))
             }
             .background(
                 LinearGradient(
@@ -425,7 +428,6 @@ struct MeditationThemeCard: View {
     let backgroundSoundManager: BackgroundSoundManager
     
     @Environment(\.colorScheme) private var colorScheme
-    @State private var isPressed = false
     
     private var isFavorite: Bool {
         favoritesManager.isFavorite(theme.name)
@@ -506,23 +508,8 @@ struct MeditationThemeCard: View {
                 .buttonStyle(.plain)
                 .padding(10)
             }
-            .scaleEffect(isPressed ? 0.97 : 1.0)
-            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
         }
-        .buttonStyle(PlainButtonStyle())
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = true
-                    }
-                }
-                .onEnded { _ in
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = false
-                    }
-                }
-        )
+        .buttonStyle(SpringScaleButtonStyle())
     }
 }
 
@@ -588,7 +575,6 @@ struct RecentlyPlayedCard: View {
     let backgroundSoundManager: BackgroundSoundManager
     
     @Environment(\.colorScheme) private var colorScheme
-    @State private var isPressed = false
     
     private var isDark: Bool { colorScheme == .dark }
     private var accent: Color { homeIconColor(for: theme.color, isDark: isDark) }
@@ -642,23 +628,8 @@ struct RecentlyPlayedCard: View {
             .background {
                 LiquidGlassCardBackground(isDark: isDark, cornerRadius: HomeGlass.cardRadius)
             }
-            .scaleEffect(isPressed ? 0.97 : 1.0)
-            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
         }
-        .buttonStyle(PlainButtonStyle())
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = true
-                    }
-                }
-                .onEnded { _ in
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = false
-                    }
-                }
-        )
+        .buttonStyle(SpringScaleButtonStyle())
     }
 }
 

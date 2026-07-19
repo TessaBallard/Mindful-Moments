@@ -8,6 +8,52 @@
 import Foundation
 import AVFoundation
 
+enum VoicePreference: String, CaseIterable, Identifiable {
+    case male
+    case female
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .male: return "Male (Dominic)"
+        case .female: return "Female (Mira)"
+        }
+    }
+
+    var fileSuffix: String {
+        switch self {
+        case .male: return ""
+        case .female: return "_mira"
+        }
+    }
+
+    static let storageKey = "guidedVoicePreference"
+
+    static var current: VoicePreference {
+        let raw = UserDefaults.standard.string(forKey: storageKey) ?? VoicePreference.male.rawValue
+        return VoicePreference(rawValue: raw) ?? .male
+    }
+
+    static func save(_ preference: VoicePreference) {
+        UserDefaults.standard.set(preference.rawValue, forKey: storageKey)
+    }
+
+    static func meditationVoiceFileName(themeName: String, duration: Int) -> String {
+        let themeFileName: String
+        if themeName == "Stress Relief" {
+            themeFileName = "stress"
+        } else {
+            themeFileName = themeName.lowercased()
+        }
+        return "\(themeFileName)_meditation_\(duration)min\(current.fileSuffix)"
+    }
+
+    static func breathingVoiceFileName(duration: Int) -> String {
+        "breathing_meditation_\(duration)min\(current.fileSuffix)"
+    }
+}
+
 /// Manages audio playback for meditation guidance with voice and background audio
 @Observable
 class MeditationAudioManager: NSObject, AVAudioPlayerDelegate {
@@ -46,14 +92,7 @@ class MeditationAudioManager: NSObject, AVAudioPlayerDelegate {
             return
         }
 
-        var themeFileName: String
-        if themeName == "Stress Relief" {
-            themeFileName = "stress"
-        } else {
-            themeFileName = themeName.lowercased()
-        }
-        
-        let voiceFileName = "\(themeFileName)_meditation_\(duration)min"
+        let voiceFileName = VoicePreference.meditationVoiceFileName(themeName: themeName, duration: duration)
         
         guard let voiceURL = Bundle.main.url(forResource: voiceFileName, withExtension: "mp3") else {
             print("❌ Voice file not found: \(voiceFileName).mp3")

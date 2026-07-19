@@ -13,6 +13,7 @@ struct SettingsView: View {
     
     @AppStorage("dailyReminderEnabled") private var dailyReminderEnabled = false
     @AppStorage("reminderTime") private var reminderTimeData = Date().timeIntervalSince1970
+    @AppStorage(VoicePreference.storageKey) private var guidedVoicePreference = VoicePreference.male.rawValue
     @State private var showingBackgroundSoundPicker = false
     @Environment(\.colorScheme) private var colorScheme
     
@@ -23,6 +24,16 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section("Audio") {
+                Picker("Guide Voice", selection: $guidedVoicePreference) {
+                    ForEach(VoicePreference.allCases) { voice in
+                        Text(voice.displayName).tag(voice.rawValue)
+                    }
+                }
+                .font(.brandSubheadline)
+                .onChange(of: guidedVoicePreference) { _, _ in
+                    HapticManager.selection()
+                }
+
                 Button(action: {
                     HapticManager.selection()
                     showingBackgroundSoundPicker = true
