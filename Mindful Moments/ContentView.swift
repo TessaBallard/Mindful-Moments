@@ -102,6 +102,7 @@ private func homeIconColor(for colorName: String, isDark: Bool) -> Color {
         case "pink": return Color(red: 1.0, green: 0.45, blue: 0.55)
         case "orange": return Color(red: 1.0, green: 0.62, blue: 0.28)
         case "yellow": return Color(red: 1.0, green: 0.88, blue: 0.35)
+        case "cyan": return Color(red: 0.45, green: 0.92, blue: 0.95)
         default: return .white
         }
     } else {
@@ -112,6 +113,7 @@ private func homeIconColor(for colorName: String, isDark: Bool) -> Color {
         case "pink": return Color(red: 0.92, green: 0.25, blue: 0.42)
         case "orange": return Color(red: 0.95, green: 0.48, blue: 0.12)
         case "yellow": return Color(red: 0.85, green: 0.68, blue: 0.0)
+        case "cyan": return Color(red: 0.0, green: 0.52, blue: 0.62)
         default: return Color(red: 0.1, green: 0.12, blue: 0.16)
         }
     }
@@ -128,9 +130,20 @@ struct ContentView: View {
     @Environment(\.colorScheme) private var colorScheme
     
     @AppStorage("hasSeenBackgroundSoundTip") private var hasSeenBackgroundSoundTip = false
+    @AppStorage("hasSeenReminderTip") private var hasSeenReminderTip = false
+    @AppStorage("dailyReminderEnabled") private var dailyReminderEnabled = false
+    @AppStorage("reminderTime") private var reminderTimeData = Date().timeIntervalSince1970
     
     private var shouldShowBackgroundSoundTip: Bool {
         !hasSeenBackgroundSoundTip && sessionStore.totalSessions >= 2
+    }
+
+    private var shouldShowReminderTip: Bool {
+        !hasSeenReminderTip && !dailyReminderEnabled && sessionStore.totalSessions >= 1
+    }
+
+    private var reminderTime: Date {
+        Date(timeIntervalSince1970: reminderTimeData)
     }
     
     private var favoriteThemes: [MeditationTheme] {
@@ -232,39 +245,89 @@ struct ContentView: View {
                             removal: .opacity
                         ))
                     }
+
+                    // Daily reminder tip (after 1 session, if reminders off)
+                    if shouldShowReminderTip {
+                        HomeReminderTipCard(
+                            isDark: isHomeDark,
+                            onEnable: {
+                                HapticManager.selection()
+                                withAnimation {
+                                    hasSeenReminderTip = true
+                                    dailyReminderEnabled = true
+                                }
+                                Task {
+                                    await notificationManager.scheduleDailyReminder(at: reminderTime)
+                                }
+                            },
+                            onDismiss: {
+                                withAnimation {
+                                    hasSeenReminderTip = true
+                                }
+                            }
+                        )
+                        .padding(.horizontal, 20)
+                        .transition(.asymmetric(
+                            insertion: .scale.combined(with: .opacity),
+                            removal: .opacity
+                        ))
+                    }
+
+                    // Streak — tap through to Progress
+                    NavigationLink(destination: ProgressView(sessionStore: sessionStore)) {
+                        HomeStreakCard(currentStreak: sessionStore.currentStreak, isDark: isHomeDark)
+                    }
+                    .buttonStyle(SpringScaleButtonStyle())
+                    .padding(.horizontal, 20)
                     
                     // Quick Breathing Exercise Card
-                    NavigationLink(destination: BreathingExerciseView()) {
+                    NavigationLink(destination: BreathingExerciseView(
+                        sessionStore: sessionStore,
+                        achievementsManager: achievementsManager
+                    )) {
                         QuickBreathingCard()
                     }
                     .buttonStyle(SpringScaleButtonStyle())
                     .padding(.horizontal, 20)
                     
                     // Recently Played
-                    if let recentSession = sessionStore.mostRecentSession,
-                       let recentTheme = MeditationTheme.sampleThemes.first(where: { $0.name == recentSession.themeName }) {
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack(spacing: 8) {
-                                Image(systemName: "clock.fill")
-                                    .font(.appScaledSystem(size: 15, weight: .semibold, design: .rounded))
-                                    .foregroundStyle(isHomeDark ? Color(red: 0.62, green: 0.55, blue: 1.0) : Color(red: 0.42, green: 0.28, blue: 0.78))
+                    if let recentSession = sessionStore.mostRecentSession {
+                        let isQuickBreathing = recentSession.themeName == "Quick Breathing"
+                        let recentTheme = MeditationTheme.sampleThemes.first(where: { $0.name == recentSession.themeName })
+
+                        if isQuickBreathing || recentTheme != nil {
+                            VStack(alignment: .leading, spacing: 12) {
+                                HStack(spacing: 8) {
+                                    Image(systemName: "clock.fill")
+                                        .font(.appScaledSystem(size: 15, weight: .semibold, design: .rounded))
+                                        .foregroundStyle(isHomeDark ? Color(red: 0.62, green: 0.55, blue: 1.0) : Color(red: 0.42, green: 0.28, blue: 0.78))
+                                    
+                                    Text("Recently Played")
+                                        .font(.appScaledSystem(size: 17, weight: .bold, design: .rounded))
+                                        .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
+                                }
+                                .padding(.horizontal, 20)
                                 
-                                Text("Recently Played")
-                                    .font(.appScaledSystem(size: 17, weight: .bold, design: .rounded))
-                                    .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
+                                if isQuickBreathing {
+                                    RecentlyPlayedBreathingCard(
+                                        session: recentSession,
+                                        sessionStore: sessionStore,
+                                        achievementsManager: achievementsManager
+                                    )
+                                    .padding(.horizontal, 20)
+                                } else if let recentTheme {
+                                    RecentlyPlayedCard(
+                                        session: recentSession,
+                                        theme: recentTheme,
+                                        sessionStore: sessionStore,
+                                        journalStore: journalStore,
+                                        favoritesManager: favoritesManager,
+                                        achievementsManager: achievementsManager,
+                                        backgroundSoundManager: backgroundSoundManager
+                                    )
+                                    .padding(.horizontal, 20)
+                                }
                             }
-                            .padding(.horizontal, 20)
-                            
-                            RecentlyPlayedCard(
-                                session: recentSession,
-                                theme: recentTheme,
-                                sessionStore: sessionStore,
-                                journalStore: journalStore,
-                                favoritesManager: favoritesManager,
-                                achievementsManager: achievementsManager,
-                                backgroundSoundManager: backgroundSoundManager
-                            )
-                            .padding(.horizontal, 20)
                         }
                     }
                     
@@ -414,6 +477,120 @@ struct ContentView: View {
                 showContent = true
             }
         }
+    }
+}
+
+// MARK: - Home Reminder Tip Card
+
+private struct HomeReminderTipCard: View {
+    let isDark: Bool
+    let onEnable: () -> Void
+    let onDismiss: () -> Void
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 14) {
+            Image(systemName: "bell.badge.fill")
+                .font(.appScaledSystem(size: 22, design: .rounded))
+                .foregroundStyle(Color(red: 0.45, green: 0.72, blue: 1.0))
+
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Build a daily habit")
+                    .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
+                    .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
+
+                Text("Turn on a gentle daily reminder in Settings — or tap below to enable now.")
+                    .font(.appScaledSystem(size: 14, weight: .regular, design: .rounded))
+                    .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Button(action: onEnable) {
+                    Text("Turn On Reminders")
+                        .font(.appScaledSystem(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background {
+                            Capsule(style: .continuous)
+                                .fill(Color(red: 0.35, green: 0.62, blue: 0.95))
+                        }
+                }
+                .buttonStyle(.plain)
+            }
+
+            Spacer(minLength: 8)
+
+            Button(action: onDismiss) {
+                Image(systemName: "xmark")
+                    .font(.appScaledSystem(size: 12, weight: .bold, design: .rounded))
+                    .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
+                    .frame(width: 30, height: 30)
+                    .background {
+                        Circle()
+                            .fill(.ultraThinMaterial)
+                            .overlay { Circle().fill(Color.black.opacity(isDark ? 0.25 : 0.06)) }
+                    }
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(18)
+        .background {
+            LiquidGlassCardBackground(isDark: isDark, cornerRadius: HomeGlass.cardRadius)
+        }
+    }
+}
+
+// MARK: - Home Streak Card
+
+private struct HomeStreakCard: View {
+    let currentStreak: Int
+    let isDark: Bool
+
+    private var streakAccent: Color {
+        isDark ? Color(red: 1.0, green: 0.62, blue: 0.22) : Color(red: 0.95, green: 0.45, blue: 0.1)
+    }
+
+    var body: some View {
+        HStack(spacing: 14) {
+            ZStack {
+                Circle()
+                    .fill(streakAccent.opacity(isDark ? 0.35 : 0.22))
+                    .frame(width: 48, height: 48)
+                Image(systemName: "flame.fill")
+                    .font(.appScaledSystem(size: 22, weight: .semibold, design: .rounded))
+                    .foregroundStyle(streakAccent)
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(currentStreak == 0 ? "Start your streak today" : "\(currentStreak) Day Streak")
+                    .font(.appScaledSystem(size: 17, weight: .semibold, design: .rounded))
+                    .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
+
+                Text(currentStreak == 0 ? "Complete a session to begin" : "Keep the momentum going!")
+                    .font(.appScaledSystem(size: 13, weight: .medium, design: .rounded))
+                    .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
+            }
+
+            Spacer(minLength: 8)
+
+            Image(systemName: "chevron.right")
+                .font(.appScaledSystem(size: 13, weight: .bold, design: .rounded))
+                .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
+                .frame(width: 32, height: 32)
+                .background {
+                    Circle()
+                        .fill(.ultraThinMaterial)
+                        .overlay { Circle().fill(Color.black.opacity(isDark ? 0.28 : 0.05)) }
+                        .overlay { Circle().stroke(Color.white.opacity(isDark ? 0.12 : 0.4), lineWidth: 1) }
+                }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .background {
+            LiquidGlassCardBackground(isDark: isDark, cornerRadius: HomeGlass.cardRadius)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(currentStreak == 0 ? "Start your streak today" : "\(currentStreak) day streak")
+        .accessibilityHint("Double tap to view your progress")
     }
 }
 
@@ -613,6 +790,67 @@ struct RecentlyPlayedCard: View {
                 
                 Spacer(minLength: 8)
                 
+                ZStack {
+                    Circle()
+                        .fill(accent)
+                        .frame(width: 44, height: 44)
+                        .shadow(color: accent.opacity(0.45), radius: 8, x: 0, y: 4)
+                    Image(systemName: "play.fill")
+                        .font(.appScaledSystem(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .offset(x: 2)
+                }
+            }
+            .padding(20)
+            .background {
+                LiquidGlassCardBackground(isDark: isDark, cornerRadius: HomeGlass.cardRadius)
+            }
+        }
+        .buttonStyle(SpringScaleButtonStyle())
+    }
+}
+
+struct RecentlyPlayedBreathingCard: View {
+    let session: MeditationSession
+    let sessionStore: SessionStore
+    let achievementsManager: AchievementsManager
+
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var isDark: Bool { colorScheme == .dark }
+    private var accent: Color { homeIconColor(for: session.themeColor, isDark: isDark) }
+
+    private var sessionSubtitle: String {
+        let ds = session.date.formatted(.dateTime.month(.abbreviated).day())
+        return "\(ds) • \(session.duration) min"
+    }
+
+    var body: some View {
+        NavigationLink(destination: BreathingExerciseView(
+            sessionStore: sessionStore,
+            achievementsManager: achievementsManager
+        )) {
+            HStack(spacing: 16) {
+                ThemeIconBloom(
+                    color: accent,
+                    systemName: session.themeIcon,
+                    iconFontSize: 24,
+                    circleDiameter: 54,
+                    isDark: isDark
+                )
+
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(session.themeName)
+                        .font(.appScaledSystem(size: 18, weight: .semibold, design: .rounded))
+                        .foregroundStyle(HomeGlass.primaryText(isDark: isDark))
+
+                    Text(sessionSubtitle)
+                        .font(.appScaledSystem(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(HomeGlass.secondaryText(isDark: isDark))
+                }
+
+                Spacer(minLength: 8)
+
                 ZStack {
                     Circle()
                         .fill(accent)

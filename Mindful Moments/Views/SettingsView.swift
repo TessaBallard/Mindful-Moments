@@ -61,7 +61,7 @@ struct SettingsView: View {
                 }
             }
             
-            Section("Reminders") {
+            Section {
                 Toggle("Daily Reminders", isOn: $dailyReminderEnabled)
                     .font(.brandSubheadline)
                     .onChange(of: dailyReminderEnabled) { oldValue, newValue in
@@ -90,6 +90,11 @@ struct SettingsView: View {
                     )
                     .font(.brandSubheadline)
                 }
+            } header: {
+                Text("Reminders")
+            } footer: {
+                Text("A gentle daily nudge to help you build a mindful habit. Messages vary through the week.")
+                    .font(.brandCaption)
             }
             
             Section("About") {

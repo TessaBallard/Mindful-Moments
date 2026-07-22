@@ -385,6 +385,7 @@ struct SessionCard: View {
         case "pink": return .pink
         case "orange": return .orange
         case "yellow": return .yellow
+        case "cyan": return .cyan
         default: return .primary
         }
     }

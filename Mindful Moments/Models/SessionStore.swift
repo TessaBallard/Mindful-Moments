@@ -109,6 +109,40 @@ class SessionStore {
         
         return streak
     }
+
+    /// Streak count after completing a session today, before `addSession` is called.
+    var projectedStreakAfterSessionToday: Int {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        var meditationDays = Set<Date>()
+        for session in sessions {
+            meditationDays.insert(calendar.startOfDay(for: session.date))
+        }
+
+        if meditationDays.contains(today) {
+            return currentStreak
+        }
+
+        if meditationDays.isEmpty {
+            return 1
+        }
+
+        let sortedDays = meditationDays.sorted(by: >)
+        guard let mostRecentDay = sortedDays.first else { return 1 }
+
+        let daysSinceLastMeditation = calendar.dateComponents([.day], from: mostRecentDay, to: today).day ?? 0
+
+        if daysSinceLastMeditation > 1 {
+            return 1
+        }
+
+        if daysSinceLastMeditation == 1 {
+            return currentStreak + 1
+        }
+
+        return max(currentStreak, 1)
+    }
     
     /// Get percentage of sessions that improved mood
     var moodImprovementRate: Int {

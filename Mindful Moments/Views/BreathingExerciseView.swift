@@ -9,6 +9,9 @@ import SwiftUI
 import AVFoundation
 
 struct BreathingExerciseView: View {
+    let sessionStore: SessionStore
+    let achievementsManager: AchievementsManager
+
     @State private var selectedDuration = 1
     @State private var isExercising = false
     @State private var isPaused = false
@@ -208,11 +211,16 @@ struct BreathingExerciseView: View {
             Spacer()
             
             VStack(spacing: 8) {
-                TimelineView(.periodic(from: .now, by: 1)) { context in
-                    Text(sessionCountdownString(at: context.date))
-                        .font(.brandTimer)
-                        .monospacedDigit()
-                        .foregroundStyle(.primary)
+                if let start = exerciseStartDate {
+                    // Anchor to session start — `.now` resets the schedule on every body
+                    // refresh and makes seconds appear to skip.
+                    TimelineView(.periodic(from: start, by: 1)) { context in
+                        Text(sessionCountdownString(at: context.date))
+                            .font(.brandTimer)
+                            .monospacedDigit()
+                            .foregroundStyle(.primary)
+                    }
+                    .id(start)
                 }
                 
                 Text("Time remaining")
@@ -501,10 +509,24 @@ struct BreathingExerciseView: View {
         completeExercise()
     }
 
+    private func saveBreathingSession() {
+        let session = MeditationSession(
+            duration: selectedDuration,
+            themeName: "Quick Breathing",
+            themeColor: "cyan",
+            themeIcon: "wind"
+        )
+        sessionStore.addSession(session)
+        _ = achievementsManager.checkForNewAchievements(sessionStore: sessionStore)
+    }
+
     private func completeGuidedTrackExercise() {
         HapticManager.success()
+        saveBreathingSession()
+        ReviewPromptManager.recordCompletedActivity()
         guard let player = audioPlayer, player.isPlaying else {
             dismiss()
+            ReviewPromptManager.requestReviewIfEligible(afterDelay: 1.0)
             return
         }
         let remaining = max(0, player.duration - player.currentTime)
@@ -512,16 +534,22 @@ struct BreathingExerciseView: View {
             self.audioPlayer?.stop()
             self.audioPlayer = nil
             self.dismiss()
+            ReviewPromptManager.requestReviewIfEligible(afterDelay: 1.0)
         }
     }
 
     private func completeExercise() {
         HapticManager.success()
+        saveBreathingSession()
+        ReviewPromptManager.recordCompletedActivity()
         silentLoopPlayer?.stop()
         silentLoopPlayer = nil
         guard let url = Bundle.main.url(forResource: "breathing_complete", withExtension: "mp3"),
               let player = try? AVAudioPlayer(contentsOf: url) else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { dismiss() }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                dismiss()
+                ReviewPromptManager.requestReviewIfEligible(afterDelay: 1.0)
+            }
             return
         }
         try? AVAudioSession.sharedInstance().setActive(true)
@@ -529,10 +557,11 @@ struct BreathingExerciseView: View {
         player.play()
         DispatchQueue.main.asyncAfter(deadline: .now() + player.duration + 0.5) {
             dismiss()
+            ReviewPromptManager.requestReviewIfEligible(afterDelay: 1.0)
         }
     }
 }
 
 #Preview {
-    BreathingExerciseView()
+    BreathingExerciseView(sessionStore: SessionStore(), achievementsManager: AchievementsManager())
 }

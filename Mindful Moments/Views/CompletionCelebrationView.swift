@@ -10,11 +10,16 @@ import SwiftUI
 struct CompletionCelebrationView: View {
     let theme: MeditationTheme
     let duration: Int
+    let streakCount: Int
     let onDismiss: () -> Void
     
     @State private var showContent = false
     @State private var confettiTrigger = 0
     @Environment(\.colorScheme) private var colorScheme
+
+    private var isMilestoneStreak: Bool {
+        streakCount == 7 || streakCount == 30
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -67,6 +72,30 @@ struct CompletionCelebrationView: View {
                             .opacity(showContent ? 1.0 : 0.0)
                             .offset(y: showContent ? 0 : 20)
                             .animation(.spring(response: 0.6, dampingFraction: 0.7).delay(0.3), value: showContent)
+
+                        HStack(spacing: 8) {
+                            Image(systemName: "flame.fill")
+                                .font(.appScaledSystem(size: 18, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.orange)
+                            Text(streakMessage)
+                                .font(.brandHeadline)
+                                .fontWeight(isMilestoneStreak ? .bold : .semibold)
+                                .foregroundStyle(.primary)
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 12)
+                        .background {
+                            Capsule(style: .continuous)
+                                .fill(Color.orange.opacity(colorScheme == .dark ? 0.22 : 0.14))
+                                .overlay {
+                                    Capsule(style: .continuous)
+                                        .stroke(Color.orange.opacity(0.35), lineWidth: 1)
+                                }
+                        }
+                        .opacity(showContent ? 1.0 : 0.0)
+                        .scaleEffect(showContent ? 1.0 : (isMilestoneStreak ? 0.85 : 0.95))
+                        .animation(.spring(response: 0.6, dampingFraction: 0.65).delay(0.4), value: showContent)
                     }
                     
                     Spacer()
@@ -81,10 +110,27 @@ struct CompletionCelebrationView: View {
         .onAppear {
             showContent = true
             confettiTrigger += 1
+
+            if isMilestoneStreak {
+                HapticManager.success()
+            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 onDismiss()
             }
+        }
+    }
+
+    private var streakMessage: String {
+        switch streakCount {
+        case 1:
+            return "Day 1 of your streak — great start!"
+        case 7:
+            return "7 day streak! One week strong."
+        case 30:
+            return "30 day streak! Incredible dedication."
+        default:
+            return "\(streakCount) day streak! Keep it going."
         }
     }
 }
@@ -134,6 +180,7 @@ struct ConfettiParticle: View {
     CompletionCelebrationView(
         theme: MeditationTheme.sampleThemes[0],
         duration: 5,
+        streakCount: 3,
         onDismiss: {}
     )
 }

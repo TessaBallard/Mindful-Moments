@@ -832,6 +832,7 @@ struct MeditationPlayerView: View {
                 audioManager.stopMeditation()
                 saveSession(moodAfter: nil)  // No mood check-out when ending early
                 dismiss()
+                ReviewPromptManager.requestReviewIfEligible(afterDelay: 1.0)
             }
         } message: {
             Text("Your progress will be saved.")
@@ -858,10 +859,12 @@ struct MeditationPlayerView: View {
         .alert("Great Session!", isPresented: $showingJournalPrompt) {
             Button("Write Journal Entry") {
                 dismiss()
+                ReviewPromptManager.requestReviewIfEligible(afterDelay: 1.0)
                 // Note: Parent view will handle navigation to journal
             }
             Button("Done", role: .cancel) {
                 dismiss()
+                ReviewPromptManager.requestReviewIfEligible(afterDelay: 1.0)
             }
         } message: {
             Text("Would you like to reflect on your meditation in your journal?")
@@ -956,6 +959,7 @@ struct MeditationPlayerView: View {
             CompletionCelebrationView(
                 theme: theme,
                 duration: duration,
+                streakCount: sessionStore.projectedStreakAfterSessionToday,
                 onDismiss: {
                     showingCompletion = false
                     showingMoodCheckOut = true
@@ -1088,6 +1092,7 @@ struct MeditationPlayerView: View {
         )
         
         sessionStore.addSession(session)
+        ReviewPromptManager.recordCompletedActivity()
         
         // Check for newly unlocked achievements
         let newAchievements = achievementsManager.checkForNewAchievements(sessionStore: sessionStore)
