@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'Mindful Moments' in project 'Mindful Moments'
+➜ Explicit dependency on target 'Mindful Moments Widget' in project 'Mindful Moments'
+Target 'Mindful Moments Widget' in project 'Mindful Moments' (no dependencies)

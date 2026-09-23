@@ -16,7 +16,16 @@ struct MeditationTheme: Identifiable, Equatable {
     let description: String
     let benefits: [String]
     let availableDurations: [Int]
-    
+    var isPlusOnly: Bool = false
+
+    static func theme(named name: String) -> MeditationTheme? {
+        allThemes.first { $0.name == name }
+    }
+
+    static var allThemes: [MeditationTheme] {
+        sampleThemes + plusThemes
+    }
+
     static let sampleThemes: [MeditationTheme] = [
         MeditationTheme(
             name: "Calm",
@@ -95,6 +104,37 @@ struct MeditationTheme: Identifiable, Equatable {
                 "Reduces negative thinking"
             ],
             availableDurations: [5, 10, 15]
+        )
+    ]
+
+    static let plusThemes: [MeditationTheme] = [
+        MeditationTheme(
+            name: "Self-Compassion",
+            color: "rose",
+            iconName: "heart.circle.fill",
+            description: "Meet yourself with kindness",
+            benefits: [
+                "Softens self-criticism",
+                "Builds emotional resilience",
+                "Supports difficult moments",
+                "Cultivates inner warmth"
+            ],
+            availableDurations: [5, 10, 15],
+            isPlusOnly: true
+        ),
+        MeditationTheme(
+            name: "Body Scan",
+            color: "sage",
+            iconName: "figure.mind.and.body",
+            description: "Release tension body to mind",
+            benefits: [
+                "Increases body awareness",
+                "Releases physical tension",
+                "Calms the nervous system",
+                "Deepens present-moment focus"
+            ],
+            availableDurations: [5, 10, 15],
+            isPlusOnly: true
         )
     ]
 }

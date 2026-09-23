@@ -30,6 +30,7 @@ class SessionStore {
     
     init() {
         loadSessions()
+        WidgetSnapshotStore.sync(from: self)
     }
     
     /// Add a new session
@@ -211,6 +212,7 @@ class SessionStore {
         if let encoded = try? JSONEncoder().encode(sessions) {
             UserDefaults.standard.set(encoded, forKey: sessionsKey)
         }
+        WidgetSnapshotStore.sync(from: self)
     }
     
     /// Load sessions from UserDefaults

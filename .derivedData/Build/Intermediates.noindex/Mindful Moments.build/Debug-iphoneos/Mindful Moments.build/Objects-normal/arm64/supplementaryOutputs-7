@@ -1,10 +1,24 @@
 {
+  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/MoodTrendsChart.swift" : {
+    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/MoodTrendsChart.swiftconstvalues",
+    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/MoodTrendsChart.d",
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/MoodTrendsChart.dia",
+    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/MoodTrendsChart.o",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/MoodTrendsChart.swiftdeps"
+  },
   "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/NewJournalEntryView.swift" : {
     "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/NewJournalEntryView.swiftconstvalues",
     "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/NewJournalEntryView.d",
     "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/NewJournalEntryView.dia",
     "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/NewJournalEntryView.o",
     "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/NewJournalEntryView.swiftdeps"
+  },
+  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/PlusPaywallView.swift" : {
+    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/PlusPaywallView.swiftconstvalues",
+    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/PlusPaywallView.d",
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/PlusPaywallView.dia",
+    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/PlusPaywallView.o",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/PlusPaywallView.swiftdeps"
   },
   "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/ProgressView.swift" : {
     "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/ProgressView.swiftconstvalues",
@@ -19,12 +33,5 @@
     "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SettingsView.dia",
     "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SettingsView.o",
     "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SettingsView.swiftdeps"
-  },
-  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/WeeklyProgressChart.swift" : {
-    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.swiftconstvalues",
-    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.d",
-    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.dia",
-    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.o",
-    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.swiftdeps"
   }
 }

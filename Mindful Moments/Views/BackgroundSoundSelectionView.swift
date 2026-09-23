@@ -10,6 +10,7 @@ import AVFoundation
 
 struct BackgroundSoundSelectionView: View {
     @Binding var selectedSound: BackgroundSound
+    var isPlusActive: Bool = true
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
     
@@ -121,7 +122,7 @@ struct BackgroundSoundSelectionView: View {
     
     private var soundOptionsView: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-            ForEach(BackgroundSound.allCases) { sound in
+            ForEach(BackgroundSound.sounds(isPlusActive: isPlusActive)) { sound in
                 BackgroundSoundCard(
                     sound: sound,
                     isSelected: selectedSound == sound,

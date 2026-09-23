@@ -20,6 +20,13 @@
     "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/Mindful_MomentsApp.o",
     "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/Mindful_MomentsApp.swiftdeps"
   },
+  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/WeeklyProgressChart.swift" : {
+    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.swiftconstvalues",
+    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.d",
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.dia",
+    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.o",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WeeklyProgressChart.swiftdeps"
+  },
   "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Views/WelcomeView.swift" : {
     "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WelcomeView.swiftconstvalues",
     "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/WelcomeView.d",

@@ -39,14 +39,32 @@ enum VoicePreference: String, CaseIterable, Identifiable {
         UserDefaults.standard.set(preference.rawValue, forKey: storageKey)
     }
 
-    static func meditationVoiceFileName(themeName: String, duration: Int) -> String {
+    static func meditationVoiceFileName(themeName: String, duration: Int, voice: VoicePreference = current) -> String {
         let themeFileName: String
-        if themeName == "Stress Relief" {
+        let isPlusTheme: Bool
+        switch themeName {
+        case "Stress Relief":
             themeFileName = "stress"
-        } else {
+            isPlusTheme = false
+        case "Self-Compassion":
+            themeFileName = "selfcompassion"
+            isPlusTheme = true
+        case "Body Scan":
+            themeFileName = "bodyscan"
+            isPlusTheme = true
+        default:
             themeFileName = themeName.lowercased()
+            isPlusTheme = false
         }
-        return "\(themeFileName)_meditation_\(duration)min\(current.fileSuffix)"
+
+        let voiceSuffix: String
+        if isPlusTheme {
+            voiceSuffix = voice == .male ? "_dominic" : "_mira"
+        } else {
+            voiceSuffix = voice.fileSuffix
+        }
+
+        return "\(themeFileName)_meditation_\(duration)min\(voiceSuffix)"
     }
 
     static func breathingVoiceFileName(duration: Int) -> String {

@@ -1,0 +1,134 @@
+{
+  "identifier" : "MindfulMomentsPlus",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "22381080",
+      "localizations" : [
+        {
+          "description" : "Unlock Self-Compassion and Body Scan meditations.",
+          "displayName" : "Mindful Moments Plus",
+          "locale" : "en_US"
+        }
+      ],
+      "name" : "Mindful Moments Plus",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "5.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6811542916",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Self-Compassion, Body Scan & Plus sounds",
+              "displayName" : "Mindful Moments Plus Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.tessaballard.Mindful_Moments_plus.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Mindful Moments Plus Monthly",
+          "subscriptionGroupID" : "22381080",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "59.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6811542917",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Self-Compassion, Body Scan & Plus sounds",
+              "displayName" : "Mindful Moments Plus Yearly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.tessaballard.Mindful_Moments.plus.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Mindful Moments Plus Yearly",
+          "subscriptionGroupID" : "22381080",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

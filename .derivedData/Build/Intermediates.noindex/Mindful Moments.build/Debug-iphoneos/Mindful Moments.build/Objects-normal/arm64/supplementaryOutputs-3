@@ -26,5 +26,12 @@
     "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/ReminderSettings.dia",
     "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/ReminderSettings.o",
     "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/ReminderSettings.swiftdeps"
+  },
+  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments/Models/SessionStore.swift" : {
+    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SessionStore.swiftconstvalues",
+    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SessionStore.d",
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SessionStore.dia",
+    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SessionStore.o",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments.build/Objects-normal/arm64/SessionStore.swiftdeps"
   }
 }

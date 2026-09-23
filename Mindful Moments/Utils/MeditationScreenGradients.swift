@@ -61,6 +61,20 @@ enum MeditationScreenGradients {
     private static let gratitudeDarkTop = Color(red: 77 / 255, green: 62 / 255, blue: 0)
     private static let gratitudeDarkBottom = Color(red: 1, green: 204 / 255, blue: 0)
 
+    /// Self-Compassion light #e86b8a → #ffc8d4
+    private static let selfCompassionLightTop = Color(red: 232 / 255, green: 107 / 255, blue: 138 / 255)
+    private static let selfCompassionLightBottom = Color(red: 1, green: 200 / 255, blue: 212 / 255)
+    /// Self-Compassion dark #4a1020 → #e86b8a
+    private static let selfCompassionDarkTop = Color(red: 74 / 255, green: 16 / 255, blue: 32 / 255)
+    private static let selfCompassionDarkBottom = Color(red: 232 / 255, green: 107 / 255, blue: 138 / 255)
+
+    /// Body Scan light #3aa88a → #b8ead8
+    private static let bodyScanLightTop = Color(red: 58 / 255, green: 168 / 255, blue: 138 / 255)
+    private static let bodyScanLightBottom = Color(red: 184 / 255, green: 234 / 255, blue: 216 / 255)
+    /// Body Scan dark #0f3d32 → #3aa88a
+    private static let bodyScanDarkTop = Color(red: 15 / 255, green: 61 / 255, blue: 50 / 255)
+    private static let bodyScanDarkBottom = Color(red: 58 / 255, green: 168 / 255, blue: 138 / 255)
+
     /// Colors for full-screen meditation backgrounds (detail + player).
     static func themeColors(themeName: String, isDark: Bool) -> [Color] {
         switch themeName {
@@ -76,6 +90,10 @@ enum MeditationScreenGradients {
             return isDark ? [energyDarkTop, energyDarkBottom] : [energyLightTop, energyLightBottom]
         case "Gratitude":
             return isDark ? [gratitudeDarkTop, gratitudeDarkBottom] : [gratitudeLightTop, gratitudeLightBottom]
+        case "Self-Compassion":
+            return isDark ? [selfCompassionDarkTop, selfCompassionDarkBottom] : [selfCompassionLightTop, selfCompassionLightBottom]
+        case "Body Scan":
+            return isDark ? [bodyScanDarkTop, bodyScanDarkBottom] : [bodyScanLightTop, bodyScanLightBottom]
         default:
             return isDark
                 ? [Color(red: 0.10, green: 0.12, blue: 0.13), Color(red: 0.08, green: 0.10, blue: 0.09)]

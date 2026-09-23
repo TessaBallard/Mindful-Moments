@@ -1,0 +1,39 @@
+{
+  "" : {
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/Mindful Moments Widget-primary.dia",
+    "emit-module-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/Mindful Moments Widget-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/Mindful Moments Widget-primary-emit-module.dia",
+    "pch" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/Mindful Moments Widget-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/Mindful Moments Widget-primary.swiftdeps"
+  },
+  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments Widget/MindfulMomentsWidgetBundle.swift" : {
+    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle.swiftconstvalues",
+    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle.d",
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle.dia",
+    "index-unit-output-path" : "/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle.o",
+    "llvm-bc" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle.bc",
+    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle.o",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle.swiftdeps",
+    "swiftmodule" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/MindfulMomentsWidgetBundle~partial.swiftmodule"
+  },
+  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments Widget/StreakWidget.swift" : {
+    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget.swiftconstvalues",
+    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget.d",
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget.dia",
+    "index-unit-output-path" : "/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget.o",
+    "llvm-bc" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget.bc",
+    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget.o",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget.swiftdeps",
+    "swiftmodule" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/StreakWidget~partial.swiftmodule"
+  },
+  "/Users/tessaballard/Documents/Projects/Mindful Moments/Mindful Moments Widget/WidgetSnapshotReader.swift" : {
+    "const-values" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader.swiftconstvalues",
+    "dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader.d",
+    "diagnostics" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader.dia",
+    "index-unit-output-path" : "/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader.o",
+    "llvm-bc" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader.bc",
+    "object" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader.o",
+    "swift-dependencies" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader.swiftdeps",
+    "swiftmodule" : "/Users/tessaballard/Documents/Projects/Mindful Moments/.derivedData/Build/Intermediates.noindex/Mindful Moments.build/Debug-iphoneos/Mindful Moments Widget.build/Objects-normal/arm64/WidgetSnapshotReader~partial.swiftmodule"
+  }
+}

@@ -103,6 +103,8 @@ private func homeIconColor(for colorName: String, isDark: Bool) -> Color {
         case "orange": return Color(red: 1.0, green: 0.62, blue: 0.28)
         case "yellow": return Color(red: 1.0, green: 0.88, blue: 0.35)
         case "cyan": return Color(red: 0.45, green: 0.92, blue: 0.95)
+        case "rose": return Color(red: 1.0, green: 0.52, blue: 0.62)
+        case "sage": return Color(red: 0.42, green: 0.88, blue: 0.72)
         default: return .white
         }
     } else {
@@ -114,6 +116,8 @@ private func homeIconColor(for colorName: String, isDark: Bool) -> Color {
         case "orange": return Color(red: 0.95, green: 0.48, blue: 0.12)
         case "yellow": return Color(red: 0.85, green: 0.68, blue: 0.0)
         case "cyan": return Color(red: 0.0, green: 0.52, blue: 0.62)
+        case "rose": return Color(red: 0.82, green: 0.22, blue: 0.38)
+        case "sage": return Color(red: 0.12, green: 0.52, blue: 0.42)
         default: return Color(red: 0.1, green: 0.12, blue: 0.16)
         }
     }
@@ -126,8 +130,11 @@ struct ContentView: View {
     @State private var favoritesManager = FavoritesManager()
     @State private var achievementsManager = AchievementsManager()
     @State private var backgroundSoundManager = BackgroundSoundManager()
+    @State private var subscriptionManager = SubscriptionManager()
     @State private var showContent = false
+    @State private var showingPaywall = false
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.scenePhase) private var scenePhase
     
     @AppStorage("hasSeenBackgroundSoundTip") private var hasSeenBackgroundSoundTip = false
     @AppStorage("hasSeenReminderTip") private var hasSeenReminderTip = false
@@ -147,7 +154,7 @@ struct ContentView: View {
     }
     
     private var favoriteThemes: [MeditationTheme] {
-        MeditationTheme.sampleThemes.filter { favoritesManager.isFavorite($0.name) }
+        MeditationTheme.allThemes.filter { favoritesManager.isFavorite($0.name) }
     }
     
     private var isHomeDark: Bool { colorScheme == .dark }
@@ -173,7 +180,7 @@ struct ContentView: View {
                         
                         HStack {
                             Spacer()
-                            NavigationLink(destination: SettingsView(notificationManager: notificationManager, backgroundSoundManager: backgroundSoundManager)) {
+                            NavigationLink(destination: SettingsView(notificationManager: notificationManager, backgroundSoundManager: backgroundSoundManager, subscriptionManager: subscriptionManager)) {
                                 Image(systemName: "gearshape.fill")
                                     .font(.appScaledSystem(size: 20, weight: .semibold, design: .rounded))
                                     .foregroundStyle(isHomeDark ? Color.white : Color(red: 0.05, green: 0.35, blue: 0.72))
@@ -293,7 +300,7 @@ struct ContentView: View {
                     // Recently Played
                     if let recentSession = sessionStore.mostRecentSession {
                         let isQuickBreathing = recentSession.themeName == "Quick Breathing"
-                        let recentTheme = MeditationTheme.sampleThemes.first(where: { $0.name == recentSession.themeName })
+                        let recentTheme = MeditationTheme.theme(named: recentSession.themeName)
 
                         if isQuickBreathing || recentTheme != nil {
                             VStack(alignment: .leading, spacing: 12) {
@@ -323,7 +330,8 @@ struct ContentView: View {
                                         journalStore: journalStore,
                                         favoritesManager: favoritesManager,
                                         achievementsManager: achievementsManager,
-                                        backgroundSoundManager: backgroundSoundManager
+                                        backgroundSoundManager: backgroundSoundManager,
+                                        subscriptionManager: subscriptionManager
                                     )
                                     .padding(.horizontal, 20)
                                 }
@@ -356,7 +364,8 @@ struct ContentView: View {
                                             journalStore: journalStore,
                                             favoritesManager: favoritesManager,
                                             achievementsManager: achievementsManager,
-                                            backgroundSoundManager: backgroundSoundManager
+                                            backgroundSoundManager: backgroundSoundManager,
+                                            subscriptionManager: subscriptionManager
                                         )
                                         .frame(width: 160)
                                         .opacity(showContent ? 1.0 : 0.0)
@@ -373,6 +382,62 @@ struct ContentView: View {
                         }
                     }
                     
+                    // Plus Meditations
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "sparkles")
+                                .font(.appScaledSystem(size: 16, weight: .semibold, design: .rounded))
+                                .foregroundStyle(isHomeDark ? Color(red: 1.0, green: 0.86, blue: 0.35) : Color(red: 0.85, green: 0.55, blue: 0.0))
+
+                            Text("Mindful Moments Plus")
+                                .font(.appScaledSystem(size: 20, weight: .bold, design: .rounded))
+                                .foregroundStyle(HomeGlass.primaryText(isDark: isHomeDark))
+
+                            Spacer()
+
+                            if !subscriptionManager.isPlusActive {
+                                Button {
+                                    HapticManager.selection()
+                                    showingPaywall = true
+                                } label: {
+                                    Text("Unlock")
+                                        .font(.appScaledSystem(size: 13, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.white)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background {
+                                            Capsule(style: .continuous)
+                                                .fill(Color(red: 0.35, green: 0.62, blue: 0.95))
+                                        }
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                        .padding(.horizontal, 20)
+
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                            ForEach(Array(MeditationTheme.plusThemes.enumerated()), id: \.element.id) { index, theme in
+                                MeditationThemeCard(
+                                    theme: theme,
+                                    sessionStore: sessionStore,
+                                    journalStore: journalStore,
+                                    favoritesManager: favoritesManager,
+                                    achievementsManager: achievementsManager,
+                                    backgroundSoundManager: backgroundSoundManager,
+                                    subscriptionManager: subscriptionManager
+                                )
+                                .opacity(showContent ? 1.0 : 0.0)
+                                .scaleEffect(showContent ? 1.0 : 0.8)
+                                .animation(
+                                    .spring(response: 0.6, dampingFraction: 0.7)
+                                    .delay(Double(index) * 0.08),
+                                    value: showContent
+                                )
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                    }
+
                     // All Meditations Section
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Meditations")
@@ -388,7 +453,8 @@ struct ContentView: View {
                                     journalStore: journalStore,
                                     favoritesManager: favoritesManager,
                                     achievementsManager: achievementsManager,
-                                    backgroundSoundManager: backgroundSoundManager
+                                    backgroundSoundManager: backgroundSoundManager,
+                                    subscriptionManager: subscriptionManager
                                 )
                                 .opacity(showContent ? 1.0 : 0.0)
                                 .scaleEffect(showContent ? 1.0 : 0.8)
@@ -475,6 +541,19 @@ struct ContentView: View {
         .onAppear {
             withAnimation(.easeInOut(duration: 0.8)) {
                 showContent = true
+            }
+        }
+        .sheet(isPresented: $showingPaywall) {
+            PlusPaywallView(subscriptionManager: subscriptionManager)
+        }
+        .onChange(of: showingPaywall) { _, isShowing in
+            if !isShowing {
+                Task { await subscriptionManager.refreshEntitlements() }
+            }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                Task { await subscriptionManager.refreshEntitlements() }
             }
         }
     }
@@ -603,25 +682,52 @@ struct MeditationThemeCard: View {
     let favoritesManager: FavoritesManager
     let achievementsManager: AchievementsManager
     let backgroundSoundManager: BackgroundSoundManager
-    
+    let subscriptionManager: SubscriptionManager
+
     @Environment(\.colorScheme) private var colorScheme
-    
+    @State private var showingPaywall = false
+
     private var isFavorite: Bool {
         favoritesManager.isFavorite(theme.name)
     }
-    
+
+    private var isLocked: Bool {
+        theme.isPlusOnly && !subscriptionManager.isPlusActive
+    }
+
     private var isDark: Bool { colorScheme == .dark }
     private var accent: Color { homeIconColor(for: theme.color, isDark: isDark) }
-    
+
     var body: some View {
-        NavigationLink(destination: MeditationDetailsView(
-            theme: theme,
-            sessionStore: sessionStore,
-            journalStore: journalStore,
-            achievementsManager: achievementsManager,
-            backgroundSoundManager: backgroundSoundManager
-        )) {
-            ZStack(alignment: .topTrailing) {
+        Group {
+            if isLocked {
+                Button {
+                    HapticManager.selection()
+                    showingPaywall = true
+                } label: {
+                    cardContent
+                }
+                .buttonStyle(SpringScaleButtonStyle())
+            } else {
+                NavigationLink(destination: MeditationDetailsView(
+                    theme: theme,
+                    sessionStore: sessionStore,
+                    journalStore: journalStore,
+                    achievementsManager: achievementsManager,
+                    backgroundSoundManager: backgroundSoundManager
+                )) {
+                    cardContent
+                }
+                .buttonStyle(SpringScaleButtonStyle())
+            }
+        }
+        .sheet(isPresented: $showingPaywall) {
+            PlusPaywallView(subscriptionManager: subscriptionManager)
+        }
+    }
+
+    private var cardContent: some View {
+        ZStack(alignment: .topTrailing) {
                 VStack(spacing: 12) {
                     ThemeIconBloom(
                         color: accent,
@@ -684,9 +790,25 @@ struct MeditationThemeCard: View {
                 .accessibilityHint("Double tap to \(isFavorite ? "remove" : "add") \(theme.name) meditation \(isFavorite ? "from" : "to") favorites")
                 .buttonStyle(.plain)
                 .padding(10)
-            }
+
+                if isLocked {
+                    HStack(spacing: 4) {
+                        Image(systemName: "lock.fill")
+                            .font(.appScaledSystem(size: 9, weight: .bold, design: .rounded))
+                        Text("Plus")
+                            .font(.appScaledSystem(size: 10, weight: .bold, design: .rounded))
+                    }
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 5)
+                    .background {
+                        Capsule(style: .continuous)
+                            .fill(Color(red: 0.35, green: 0.62, blue: 0.95))
+                    }
+                    .padding(10)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                }
         }
-        .buttonStyle(SpringScaleButtonStyle())
     }
 }
 
@@ -750,25 +872,53 @@ struct RecentlyPlayedCard: View {
     let favoritesManager: FavoritesManager
     let achievementsManager: AchievementsManager
     let backgroundSoundManager: BackgroundSoundManager
-    
+    let subscriptionManager: SubscriptionManager
+
     @Environment(\.colorScheme) private var colorScheme
-    
+    @State private var showingPaywall = false
+
+    private var isLocked: Bool {
+        theme.isPlusOnly && !subscriptionManager.isPlusActive
+    }
+
     private var isDark: Bool { colorScheme == .dark }
     private var accent: Color { homeIconColor(for: theme.color, isDark: isDark) }
-    
+
     private var sessionSubtitle: String {
         let ds = session.date.formatted(.dateTime.month(.abbreviated).day())
         return "\(ds) • \(session.duration) min"
     }
-    
+
     var body: some View {
-        NavigationLink(destination: MeditationDetailsView(
-            theme: theme,
-            sessionStore: sessionStore,
-            journalStore: journalStore,
-            achievementsManager: achievementsManager,
-            backgroundSoundManager: backgroundSoundManager
-        )) {
+        Group {
+            if isLocked {
+                Button {
+                    HapticManager.selection()
+                    showingPaywall = true
+                } label: {
+                    cardContent
+                }
+                .buttonStyle(SpringScaleButtonStyle())
+            } else {
+                NavigationLink(destination: MeditationDetailsView(
+                    theme: theme,
+                    sessionStore: sessionStore,
+                    journalStore: journalStore,
+                    achievementsManager: achievementsManager,
+                    backgroundSoundManager: backgroundSoundManager
+                )) {
+                    cardContent
+                }
+                .buttonStyle(SpringScaleButtonStyle())
+            }
+        }
+        .sheet(isPresented: $showingPaywall) {
+            PlusPaywallView(subscriptionManager: subscriptionManager)
+        }
+    }
+
+    private var cardContent: some View {
+        Group {
             HStack(spacing: 16) {
                 ThemeIconBloom(
                     color: accent,
@@ -806,7 +956,6 @@ struct RecentlyPlayedCard: View {
                 LiquidGlassCardBackground(isDark: isDark, cornerRadius: HomeGlass.cardRadius)
             }
         }
-        .buttonStyle(SpringScaleButtonStyle())
     }
 }
 

@@ -38,6 +38,12 @@ struct MeditationDetailsView: View {
     /// Gratitude gold #ffcc00, light gradient foot #fff3c2
     private static let gratitudeGold = Color(red: 255 / 255, green: 204 / 255, blue: 0)
     private static let gratitudeGradientLightBottom = Color(red: 255 / 255, green: 243 / 255, blue: 194 / 255)
+    /// Self-Compassion rose #e86b8a
+    private static let selfCompassionAccentRose = Color(red: 232 / 255, green: 107 / 255, blue: 138 / 255)
+    private static let selfCompassionDarkTop = Color(red: 74 / 255, green: 16 / 255, blue: 32 / 255)
+    /// Body Scan sage #3aa88a
+    private static let bodyScanAccentSage = Color(red: 58 / 255, green: 168 / 255, blue: 138 / 255)
+    private static let bodyScanDarkTop = Color(red: 15 / 255, green: 61 / 255, blue: 50 / 255)
     private var gradientColors: [Color] {
         MeditationScreenGradients.themeColors(themeName: theme.name, isDark: colorScheme == .dark)
     }
@@ -85,7 +91,23 @@ struct MeditationDetailsView: View {
     private var isGratitudeDarkReference: Bool {
         theme.name == "Gratitude" && colorScheme == .dark
     }
-    
+
+    private var isSelfCompassionLightReference: Bool {
+        theme.name == "Self-Compassion" && colorScheme == .light
+    }
+
+    private var isSelfCompassionDarkReference: Bool {
+        theme.name == "Self-Compassion" && colorScheme == .dark
+    }
+
+    private var isBodyScanLightReference: Bool {
+        theme.name == "Body Scan" && colorScheme == .light
+    }
+
+    private var isBodyScanDarkReference: Bool {
+        theme.name == "Body Scan" && colorScheme == .dark
+    }
+
     private var headerIconCircleFill: Color {
         if isCalmLightReference {
             return Color(red: 0.18, green: 0.72, blue: 0.65)
@@ -118,6 +140,18 @@ struct MeditationDetailsView: View {
             return Color.white.opacity(0.14)
         }
         if isGratitudeLightReference {
+            return Color.white.opacity(0.42)
+        }
+        if isSelfCompassionDarkReference {
+            return Color.white.opacity(0.14)
+        }
+        if isSelfCompassionLightReference {
+            return Color.white.opacity(0.42)
+        }
+        if isBodyScanDarkReference {
+            return Color.white.opacity(0.14)
+        }
+        if isBodyScanLightReference {
             return Color.white.opacity(0.42)
         }
         return iconColor.opacity(colorScheme == .dark ? 0.2 : 0.15)
@@ -154,6 +188,12 @@ struct MeditationDetailsView: View {
         if isGratitudeDarkReference || isGratitudeLightReference {
             return Self.gratitudeGold
         }
+        if isSelfCompassionDarkReference || isSelfCompassionLightReference {
+            return Self.selfCompassionAccentRose
+        }
+        if isBodyScanDarkReference || isBodyScanLightReference {
+            return Self.bodyScanAccentSage
+        }
         return iconColor
     }
     
@@ -169,6 +209,10 @@ struct MeditationDetailsView: View {
         if isEnergyLightReference { return Color(red: 0.32, green: 0.14, blue: 0.02) }
         if isGratitudeDarkReference { return .white }
         if isGratitudeLightReference { return Color(red: 0.28, green: 0.20, blue: 0.02) }
+        if isSelfCompassionDarkReference { return .white }
+        if isSelfCompassionLightReference { return Color(red: 0.32, green: 0.08, blue: 0.18) }
+        if isBodyScanDarkReference { return .white }
+        if isBodyScanLightReference { return Color(red: 0.06, green: 0.28, blue: 0.22) }
         return Color.primary
     }
     
@@ -185,6 +229,10 @@ struct MeditationDetailsView: View {
         if isEnergyLightReference { return Color(red: 0.50, green: 0.22, blue: 0.08).opacity(0.9) }
         if isGratitudeDarkReference { return Color.white.opacity(0.78) }
         if isGratitudeLightReference { return Color(red: 0.42, green: 0.32, blue: 0.08).opacity(0.9) }
+        if isSelfCompassionDarkReference { return Color.white.opacity(0.78) }
+        if isSelfCompassionLightReference { return Color(red: 0.48, green: 0.16, blue: 0.28).opacity(0.9) }
+        if isBodyScanDarkReference { return Color.white.opacity(0.78) }
+        if isBodyScanLightReference { return Color(red: 0.12, green: 0.38, blue: 0.30).opacity(0.9) }
         return Color.secondary
     }
     
@@ -200,6 +248,10 @@ struct MeditationDetailsView: View {
         if isEnergyLightReference { return Color(red: 0.42, green: 0.20, blue: 0.08) }
         if isGratitudeDarkReference { return Color.white.opacity(0.82) }
         if isGratitudeLightReference { return Color(red: 0.38, green: 0.28, blue: 0.06) }
+        if isSelfCompassionDarkReference { return Color.white.opacity(0.82) }
+        if isSelfCompassionLightReference { return Color(red: 0.38, green: 0.12, blue: 0.24) }
+        if isBodyScanDarkReference { return Color.white.opacity(0.82) }
+        if isBodyScanLightReference { return Color(red: 0.10, green: 0.32, blue: 0.26) }
         return detailSubtitleColor
     }
     
@@ -215,6 +267,10 @@ struct MeditationDetailsView: View {
         if isEnergyLightReference { return Color(red: 0.28, green: 0.12, blue: 0.04) }
         if isGratitudeDarkReference { return Color.white.opacity(0.72) }
         if isGratitudeLightReference { return Color(red: 0.32, green: 0.22, blue: 0.04) }
+        if isSelfCompassionDarkReference { return Color.white.opacity(0.72) }
+        if isSelfCompassionLightReference { return Color(red: 0.28, green: 0.08, blue: 0.16) }
+        if isBodyScanDarkReference { return Color.white.opacity(0.72) }
+        if isBodyScanLightReference { return Color(red: 0.08, green: 0.26, blue: 0.20) }
         return Color.primary
     }
     
@@ -226,6 +282,8 @@ struct MeditationDetailsView: View {
         if isStressReliefDarkReference || isStressReliefLightReference { return Self.stressAccentPink.opacity(0.42) }
         if isEnergyDarkReference || isEnergyLightReference { return Self.energyAccentOrange.opacity(0.42) }
         if isGratitudeDarkReference || isGratitudeLightReference { return Self.gratitudeGold.opacity(0.42) }
+        if isSelfCompassionDarkReference || isSelfCompassionLightReference { return Self.selfCompassionAccentRose.opacity(0.42) }
+        if isBodyScanDarkReference || isBodyScanLightReference { return Self.bodyScanAccentSage.opacity(0.42) }
         return iconColor.opacity(0.35)
     }
     
@@ -267,6 +325,18 @@ struct MeditationDetailsView: View {
                 ("waveform", "Calming background sounds"),
                 ("heart.circle", "Peaceful and centered feeling")
             ]
+        case "Self-Compassion":
+            return [
+                ("heart.circle.fill", "Gentle kindness toward yourself"),
+                ("waveform", "Warm, soothing ambient sounds"),
+                ("sparkles", "Space to soften self-criticism")
+            ]
+        case "Body Scan":
+            return [
+                ("figure.mind.and.body", "Slow attention through the body"),
+                ("waveform", "Soft, grounding ambient sounds"),
+                ("leaf.fill", "Release tension as you go")
+            ]
         default:
             return Array(theme.benefits.prefix(3)).map { ("checkmark.circle.fill", $0) }
         }
@@ -284,6 +354,8 @@ struct MeditationDetailsView: View {
         if isStressReliefDarkReference || isStressReliefLightReference { return Self.stressAccentPink }
         if isEnergyDarkReference || isEnergyLightReference { return Self.energyAccentOrange }
         if isGratitudeDarkReference || isGratitudeLightReference { return Self.gratitudeGold }
+        if isSelfCompassionDarkReference || isSelfCompassionLightReference { return Self.selfCompassionAccentRose }
+        if isBodyScanDarkReference || isBodyScanLightReference { return Self.bodyScanAccentSage }
         return .accentColor
     }
     
@@ -299,6 +371,10 @@ struct MeditationDetailsView: View {
         if isEnergyLightReference { return Color.black.opacity(0.26) }
         if isGratitudeDarkReference { return Color(red: 0.22, green: 0.16, blue: 0.04).opacity(0.72) }
         if isGratitudeLightReference { return Color.black.opacity(0.26) }
+        if isSelfCompassionDarkReference { return Self.selfCompassionDarkTop.opacity(0.72) }
+        if isSelfCompassionLightReference { return Color.black.opacity(0.26) }
+        if isBodyScanDarkReference { return Self.bodyScanDarkTop.opacity(0.72) }
+        if isBodyScanLightReference { return Color.black.opacity(0.26) }
         return iconColor.opacity(0.85)
     }
     
@@ -394,7 +470,7 @@ struct MeditationDetailsView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     Text("What to Expect")
                         .font(.brandHeadline)
-                        .fontWeight((isSleepDarkReference || isFocusDarkReference || isStressReliefDarkReference || isEnergyDarkReference || isGratitudeDarkReference) ? .bold : .semibold)
+                        .fontWeight((isSleepDarkReference || isFocusDarkReference || isStressReliefDarkReference || isEnergyDarkReference || isGratitudeDarkReference || isSelfCompassionDarkReference || isBodyScanDarkReference) ? .bold : .semibold)
                         .foregroundStyle(detailTitleColor)
                     
                     VStack(alignment: .leading, spacing: 12) {
@@ -462,6 +538,12 @@ struct MeditationDetailsView: View {
                             } else if isGratitudeDarkReference || isGratitudeLightReference {
                                 RoundedRectangle(cornerRadius: 26, style: .continuous)
                                     .fill(Self.gratitudeGold)
+                            } else if isSelfCompassionDarkReference || isSelfCompassionLightReference {
+                                RoundedRectangle(cornerRadius: 26, style: .continuous)
+                                    .fill(Self.selfCompassionAccentRose)
+                            } else if isBodyScanDarkReference || isBodyScanLightReference {
+                                RoundedRectangle(cornerRadius: 26, style: .continuous)
+                                    .fill(Self.bodyScanAccentSage)
                             } else {
                                 RoundedRectangle(cornerRadius: 26, style: .continuous)
                                     .fill(iconColor)
@@ -544,6 +626,8 @@ struct MeditationDetailsView: View {
         case "pink": return .pink
         case "orange": return .orange
         case "yellow": return .yellow
+        case "rose": return colorScheme == .dark ? Color(red: 1.0, green: 0.52, blue: 0.62) : Color(red: 0.82, green: 0.22, blue: 0.38)
+        case "sage": return colorScheme == .dark ? Color(red: 0.42, green: 0.88, blue: 0.72) : Color(red: 0.12, green: 0.52, blue: 0.42)
         default: return .primary
         }
     }
@@ -603,7 +687,23 @@ struct DurationButton: View {
     private var gratitudeDarkClassic: Bool {
         themeName == "Gratitude" && colorScheme == .dark
     }
-    
+
+    private var selfCompassionLightClassic: Bool {
+        themeName == "Self-Compassion" && colorScheme == .light
+    }
+
+    private var selfCompassionDarkClassic: Bool {
+        themeName == "Self-Compassion" && colorScheme == .dark
+    }
+
+    private var bodyScanLightClassic: Bool {
+        themeName == "Body Scan" && colorScheme == .light
+    }
+
+    private var bodyScanDarkClassic: Bool {
+        themeName == "Body Scan" && colorScheme == .dark
+    }
+
     private var stressAccentPink: Color {
         Color(red: 255 / 255, green: 45 / 255, blue: 85 / 255)
     }
@@ -615,7 +715,15 @@ struct DurationButton: View {
     private var gratitudeGold: Color {
         Color(red: 255 / 255, green: 204 / 255, blue: 0)
     }
-    
+
+    private var selfCompassionAccentRose: Color {
+        Color(red: 232 / 255, green: 107 / 255, blue: 138 / 255)
+    }
+
+    private var bodyScanAccentSage: Color {
+        Color(red: 58 / 255, green: 168 / 255, blue: 138 / 255)
+    }
+
     /// ~#21436e unselected duration chip (Focus dark).
     private var focusMutedNavy: Color {
         Color(red: 33 / 255, green: 67 / 255, blue: 110 / 255)
@@ -639,6 +747,10 @@ struct DurationButton: View {
             return energyAccentOrange
         case "Gratitude":
             return gratitudeGold
+        case "Self-Compassion":
+            return selfCompassionAccentRose
+        case "Body Scan":
+            return bodyScanAccentSage
         default:
             return .blue
         }
@@ -673,6 +785,12 @@ struct DurationButton: View {
         }
         if gratitudeDarkClassic || gratitudeLightClassic {
             return gratitudeGold
+        }
+        if selfCompassionDarkClassic || selfCompassionLightClassic {
+            return selfCompassionAccentRose
+        }
+        if bodyScanDarkClassic || bodyScanLightClassic {
+            return bodyScanAccentSage
         }
         return themeColor
     }
@@ -714,6 +832,18 @@ struct DurationButton: View {
         if gratitudeLightClassic {
             return Color.white.opacity(0.45)
         }
+        if selfCompassionDarkClassic {
+            return Color.white.opacity(0.14)
+        }
+        if selfCompassionLightClassic {
+            return Color.white.opacity(0.45)
+        }
+        if bodyScanDarkClassic {
+            return Color.white.opacity(0.14)
+        }
+        if bodyScanLightClassic {
+            return Color.white.opacity(0.45)
+        }
         return Color.clear
     }
     
@@ -723,6 +853,8 @@ struct DurationButton: View {
         calmLightClassic || calmDarkClassic || sleepDarkClassic || sleepLightClassic || focusLightClassic || focusDarkClassic
             || stressLightClassic || stressDarkClassic || energyLightClassic || energyDarkClassic
             || gratitudeLightClassic || gratitudeDarkClassic
+            || selfCompassionLightClassic || selfCompassionDarkClassic
+            || bodyScanLightClassic || bodyScanDarkClassic
     }
     
     private var durationLabelForeground: Color {
@@ -739,6 +871,10 @@ struct DurationButton: View {
         if energyLightClassic { return Color(red: 0.26, green: 0.11, blue: 0.03) }
         if gratitudeDarkClassic { return .white }
         if gratitudeLightClassic { return Color(red: 0.30, green: 0.20, blue: 0.02) }
+        if selfCompassionDarkClassic { return .white }
+        if selfCompassionLightClassic { return Color(red: 0.28, green: 0.08, blue: 0.16) }
+        if bodyScanDarkClassic { return .white }
+        if bodyScanLightClassic { return Color(red: 0.06, green: 0.28, blue: 0.22) }
         return Color.primary
     }
     
@@ -755,6 +891,10 @@ struct DurationButton: View {
         if isSelected && energyLightClassic { return 0.14 }
         if isSelected && gratitudeDarkClassic { return 0.18 }
         if isSelected && gratitudeLightClassic { return 0.14 }
+        if isSelected && selfCompassionDarkClassic { return 0.18 }
+        if isSelected && selfCompassionLightClassic { return 0.14 }
+        if isSelected && bodyScanDarkClassic { return 0.18 }
+        if isSelected && bodyScanLightClassic { return 0.14 }
         if isSelected { return 0.15 }
         return 0.06
     }
@@ -773,11 +913,15 @@ struct DurationButton: View {
         if energyLightClassic { return Color.white.opacity(0.4) }
         if gratitudeDarkClassic { return Color.white.opacity(0.12) }
         if gratitudeLightClassic { return Color.white.opacity(0.4) }
+        if selfCompassionDarkClassic { return Color.white.opacity(0.12) }
+        if selfCompassionLightClassic { return Color.white.opacity(0.4) }
+        if bodyScanDarkClassic { return Color.white.opacity(0.12) }
+        if bodyScanLightClassic { return Color.white.opacity(0.4) }
         return Color(.separator).opacity(0.5)
     }
     
     private var durationCardShadowY: CGFloat {
-        calmLightClassic || sleepLightClassic || focusLightClassic || stressLightClassic || energyLightClassic || gratitudeLightClassic ? 3 : 4
+        calmLightClassic || sleepLightClassic || focusLightClassic || stressLightClassic || energyLightClassic || gratitudeLightClassic || selfCompassionLightClassic || bodyScanLightClassic ? 3 : 4
     }
     
     var body: some View {

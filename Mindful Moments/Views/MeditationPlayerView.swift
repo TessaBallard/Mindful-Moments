@@ -105,7 +105,31 @@ struct MeditationPlayerView: View {
     private var isGratitudeDarkPlayer: Bool {
         theme.name == "Gratitude" && colorScheme == .dark
     }
-    
+
+    private var isSelfCompassionPlayer: Bool {
+        theme.name == "Self-Compassion"
+    }
+
+    private var isSelfCompassionLightPlayer: Bool {
+        theme.name == "Self-Compassion" && colorScheme == .light
+    }
+
+    private var isSelfCompassionDarkPlayer: Bool {
+        theme.name == "Self-Compassion" && colorScheme == .dark
+    }
+
+    private var isBodyScanPlayer: Bool {
+        theme.name == "Body Scan"
+    }
+
+    private var isBodyScanLightPlayer: Bool {
+        theme.name == "Body Scan" && colorScheme == .light
+    }
+
+    private var isBodyScanDarkPlayer: Bool {
+        theme.name == "Body Scan" && colorScheme == .dark
+    }
+
     private static let calmPlayerRingTrack = Color(red: 0.14, green: 0.52, blue: 0.47)
     private static let calmPlayerAccentButton = Color(red: 26 / 255, green: 188 / 255, blue: 156 / 255)
     private static let calmPlayerTitleText = Color(red: 0.05, green: 0.12, blue: 0.11)
@@ -135,7 +159,13 @@ struct MeditationPlayerView: View {
     private static let gratitudePlayerGold = Color(red: 255 / 255, green: 204 / 255, blue: 0)
     private static let gratitudePlayerCream = Color(red: 255 / 255, green: 243 / 255, blue: 194 / 255)
     private static let gratitudePlayerDarkTop = Color(red: 77 / 255, green: 62 / 255, blue: 0)
-    
+
+    private static let selfCompassionPlayerRose = Color(red: 232 / 255, green: 107 / 255, blue: 138 / 255)
+    private static let selfCompassionPlayerDarkTop = Color(red: 74 / 255, green: 16 / 255, blue: 32 / 255)
+
+    private static let bodyScanPlayerSage = Color(red: 58 / 255, green: 168 / 255, blue: 138 / 255)
+    private static let bodyScanPlayerDarkTop = Color(red: 15 / 255, green: 61 / 255, blue: 50 / 255)
+
     private var themeAccent: Color {
         if isCalmPlayer { return Self.calmPlayerAccentButton }
         if isSleepPlayer { return Self.sleepPlayerAccent }
@@ -143,6 +173,8 @@ struct MeditationPlayerView: View {
         if isStressReliefPlayer { return Self.stressPlayerAccent }
         if isEnergyPlayer { return Self.energyPlayerAccent }
         if isGratitudePlayer { return Self.gratitudePlayerGold }
+        if isSelfCompassionPlayer { return Self.selfCompassionPlayerRose }
+        if isBodyScanPlayer { return Self.bodyScanPlayerSage }
         return primaryColorForTheme(theme.name)
     }
     
@@ -159,6 +191,10 @@ struct MeditationPlayerView: View {
         if isEnergyDarkPlayer { return .white }
         if isGratitudeLightPlayer { return .white }
         if isGratitudeDarkPlayer { return .white }
+        if isSelfCompassionLightPlayer { return Color(red: 0.32, green: 0.08, blue: 0.18) }
+        if isSelfCompassionDarkPlayer { return .white }
+        if isBodyScanLightPlayer { return Color(red: 0.06, green: 0.28, blue: 0.22) }
+        if isBodyScanDarkPlayer { return .white }
         return Color.primary
     }
     
@@ -175,6 +211,10 @@ struct MeditationPlayerView: View {
         if isEnergyDarkPlayer { return Color.white.opacity(0.82) }
         if isGratitudeLightPlayer { return Color.white.opacity(0.88) }
         if isGratitudeDarkPlayer { return Color.white.opacity(0.80) }
+        if isSelfCompassionLightPlayer { return Color(red: 0.48, green: 0.16, blue: 0.28).opacity(0.9) }
+        if isSelfCompassionDarkPlayer { return Color.white.opacity(0.82) }
+        if isBodyScanLightPlayer { return Color(red: 0.12, green: 0.38, blue: 0.30).opacity(0.9) }
+        if isBodyScanDarkPlayer { return Color.white.opacity(0.82) }
         return Color.secondary
     }
     
@@ -190,6 +230,10 @@ struct MeditationPlayerView: View {
         if isEnergyDarkPlayer { return Color.white.opacity(0.22) }
         if isGratitudeLightPlayer { return Self.gratitudePlayerGold.opacity(0.42) }
         if isGratitudeDarkPlayer { return Color.white.opacity(0.22) }
+        if isSelfCompassionLightPlayer { return Self.selfCompassionPlayerRose.opacity(0.38) }
+        if isSelfCompassionDarkPlayer { return Color.white.opacity(0.22) }
+        if isBodyScanLightPlayer { return Self.bodyScanPlayerSage.opacity(0.38) }
+        if isBodyScanDarkPlayer { return Color.white.opacity(0.22) }
         return Color(.systemGray5).opacity(0.3)
     }
     
@@ -205,6 +249,10 @@ struct MeditationPlayerView: View {
         if isEnergyDarkPlayer { return Self.energyPlayerAccent }
         if isGratitudeLightPlayer { return Self.gratitudePlayerGold }
         if isGratitudeDarkPlayer { return Self.gratitudePlayerGold }
+        if isSelfCompassionLightPlayer { return Self.selfCompassionPlayerRose }
+        if isSelfCompassionDarkPlayer { return Self.selfCompassionPlayerRose }
+        if isBodyScanLightPlayer { return Self.bodyScanPlayerSage }
+        if isBodyScanDarkPlayer { return Self.bodyScanPlayerSage }
         return primaryColorForTheme(theme.name)
     }
     
@@ -221,13 +269,17 @@ struct MeditationPlayerView: View {
         if isEnergyDarkPlayer { return Color.white.opacity(0.88) }
         if isGratitudeLightPlayer { return Color.white }
         if isGratitudeDarkPlayer { return Color.white.opacity(0.9) }
+        if isSelfCompassionLightPlayer { return Color(red: 0.38, green: 0.12, blue: 0.24) }
+        if isSelfCompassionDarkPlayer { return Color.white.opacity(0.9) }
+        if isBodyScanLightPlayer { return Color(red: 0.10, green: 0.32, blue: 0.26) }
+        if isBodyScanDarkPlayer { return Color.white.opacity(0.9) }
         return Color.secondary
     }
     
     /// Same SF Rounded digit style in light and dark (52pt medium + `.monospacedDigit()` on the `Text`).
     private var playerTimerDisplayFont: Font {
         switch theme.name {
-        case "Calm", "Sleep", "Focus", "Stress Relief", "Energy", "Gratitude":
+        case "Calm", "Sleep", "Focus", "Stress Relief", "Energy", "Gratitude", "Self-Compassion", "Body Scan":
             return Font.appScaledSystem(size: 52, weight: .medium, design: .rounded)
         default:
             return .brandTimer
@@ -235,7 +287,7 @@ struct MeditationPlayerView: View {
     }
     
     private var referencePlayerVerticalLayout: Bool {
-        isCalmPlayer || isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer
+        isCalmPlayer || isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer || isSelfCompassionPlayer || isBodyScanPlayer
     }
     
     private var playerThemeTitleFont: Font {
@@ -251,12 +303,16 @@ struct MeditationPlayerView: View {
         if isEnergyDarkPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
         if isGratitudeLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
         if isGratitudeDarkPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isSelfCompassionLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isSelfCompassionDarkPlayer { return Font.appScaledSystem(size: 22, weight: .semibold, design: .rounded) }
+        if isBodyScanLightPlayer { return Font.appScaledSystem(size: 22, weight: .bold, design: .rounded) }
+        if isBodyScanDarkPlayer { return Font.appScaledSystem(size: 22, weight: .semibold, design: .rounded) }
         return .brandTitle3
     }
     
     /// Reference themes share the same ring chrome logic (Calm, Sleep, Focus, Stress Relief, Energy, Gratitude).
     private var referenceRingChrome: Bool {
-        isCalmPlayer || isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer
+        isCalmPlayer || isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer || isSelfCompassionPlayer || isBodyScanPlayer
     }
     
     /// Matches `MeditationDetailsView` start-button shadow (player flags).
@@ -269,6 +325,8 @@ struct MeditationPlayerView: View {
         if isStressReliefDarkPlayer || isStressReliefLightPlayer { return Self.stressPlayerAccent.opacity(0.42) }
         if isEnergyDarkPlayer || isEnergyLightPlayer { return Self.energyPlayerAccent.opacity(0.42) }
         if isGratitudeDarkPlayer || isGratitudeLightPlayer { return Self.gratitudePlayerGold.opacity(0.42) }
+        if isSelfCompassionDarkPlayer || isSelfCompassionLightPlayer { return Self.selfCompassionPlayerRose.opacity(0.42) }
+        if isBodyScanDarkPlayer || isBodyScanLightPlayer { return Self.bodyScanPlayerSage.opacity(0.42) }
         return primaryColorForTheme(theme.name).opacity(0.35)
     }
     
@@ -314,6 +372,12 @@ struct MeditationPlayerView: View {
         } else if isGratitudeDarkPlayer || isGratitudeLightPlayer {
             RoundedRectangle(cornerRadius: 26, style: .continuous)
                 .fill(Self.gratitudePlayerGold)
+        } else if isSelfCompassionDarkPlayer || isSelfCompassionLightPlayer {
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .fill(Self.selfCompassionPlayerRose)
+        } else if isBodyScanDarkPlayer || isBodyScanLightPlayer {
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .fill(Self.bodyScanPlayerSage)
         } else {
             RoundedRectangle(cornerRadius: 26, style: .continuous)
                 .fill(primaryColorForTheme(theme.name))
@@ -370,7 +434,7 @@ struct MeditationPlayerView: View {
                     .foregroundStyle(refLayout ? playerTitleForeground : Color.primary)
                 
                 if !playerModel.isPlaying && playerModel.timeRemaining > 0 {
-                    if isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudeDarkPlayer {
+                    if isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudeDarkPlayer || isSelfCompassionDarkPlayer || isBodyScanDarkPlayer {
                         Text("Paused")
                             .font(.appScaledSystem(size: 11, weight: .semibold, design: .rounded))
                             .textCase(.uppercase)
@@ -404,7 +468,7 @@ struct MeditationPlayerView: View {
             }
         }) {
             ZStack {
-                if playerModel.isPlaying && !isCalmPlayer && !isSleepPlayer && !isFocusPlayer && !isStressReliefPlayer && !isEnergyPlayer && !isGratitudePlayer {
+                if playerModel.isPlaying && !isCalmPlayer && !isSleepPlayer && !isFocusPlayer && !isStressReliefPlayer && !isEnergyPlayer && !isGratitudePlayer && !isSelfCompassionPlayer && !isBodyScanPlayer {
                     Circle()
                         .fill(primaryColorForTheme(theme.name).opacity(0.3))
                         .frame(width: 100, height: 100)
@@ -509,6 +573,18 @@ struct MeditationPlayerView: View {
         } else if isGratitudeDarkPlayer {
             RoundedRectangle(cornerRadius: 26, style: .continuous)
                 .fill(Self.gratitudePlayerDarkTop.opacity(0.72))
+        } else if isSelfCompassionLightPlayer {
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .fill(Color.white.opacity(0.55))
+        } else if isSelfCompassionDarkPlayer {
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .fill(Self.selfCompassionPlayerDarkTop.opacity(0.72))
+        } else if isBodyScanLightPlayer {
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .fill(Color.white.opacity(0.55))
+        } else if isBodyScanDarkPlayer {
+            RoundedRectangle(cornerRadius: 26, style: .continuous)
+                .fill(Self.bodyScanPlayerDarkTop.opacity(0.72))
         } else {
             RoundedRectangle(cornerRadius: 26, style: .continuous)
                 .fill(.ultraThinMaterial)
@@ -528,11 +604,15 @@ struct MeditationPlayerView: View {
         if isEnergyDarkPlayer { return Color.white.opacity(0.18) }
         if isGratitudeLightPlayer { return Color.white.opacity(0.28) }
         if isGratitudeDarkPlayer { return Color.white.opacity(0.18) }
+        if isSelfCompassionLightPlayer { return Color.white.opacity(0.42) }
+        if isSelfCompassionDarkPlayer { return Color.white.opacity(0.18) }
+        if isBodyScanLightPlayer { return Color.white.opacity(0.42) }
+        if isBodyScanDarkPlayer { return Color.white.opacity(0.18) }
         return Color(.systemGray6)
     }
     
     private var soundMuteButtonUnmutedAccentOpacity: Double {
-        isCalmPlayer ? 0.22 : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? 0.24 : 0.15)
+        isCalmPlayer ? 0.22 : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer || isSelfCompassionPlayer || isBodyScanPlayer) ? 0.24 : 0.15)
     }
     
     @ViewBuilder
@@ -691,6 +771,18 @@ struct MeditationPlayerView: View {
                     } else if isGratitudeDarkPlayer {
                         RoundedRectangle(cornerRadius: 26, style: .continuous)
                             .fill(Self.gratitudePlayerDarkTop.opacity(0.72))
+                    } else if isSelfCompassionLightPlayer {
+                        RoundedRectangle(cornerRadius: 26, style: .continuous)
+                            .fill(Color.white.opacity(0.55))
+                    } else if isSelfCompassionDarkPlayer {
+                        RoundedRectangle(cornerRadius: 26, style: .continuous)
+                            .fill(Self.selfCompassionPlayerDarkTop.opacity(0.72))
+                    } else if isBodyScanLightPlayer {
+                        RoundedRectangle(cornerRadius: 26, style: .continuous)
+                            .fill(Color.white.opacity(0.55))
+                    } else if isBodyScanDarkPlayer {
+                        RoundedRectangle(cornerRadius: 26, style: .continuous)
+                            .fill(Self.bodyScanPlayerDarkTop.opacity(0.72))
                     } else {
                         RoundedRectangle(cornerRadius: 26, style: .continuous)
                             .fill(.ultraThinMaterial)
@@ -741,7 +833,7 @@ struct MeditationPlayerView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        .toolbarBackground((isCalmPlayer || isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? .hidden : .automatic, for: .navigationBar)
+        .toolbarBackground(referenceRingChrome ? .hidden : .automatic, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
@@ -778,7 +870,15 @@ struct MeditationPlayerView: View {
                                                                 ? Color.white
                                                                 : isGratitudeDarkPlayer
                                                                     ? Color.white
-                                                                    : Color.primary
+                                                                    : isSelfCompassionLightPlayer
+                                                                        ? Color.primary
+                                                                        : isSelfCompassionDarkPlayer
+                                                                            ? Color.white
+                                                                            : isBodyScanLightPlayer
+                                                                                ? Color.primary
+                                                                                : isBodyScanDarkPlayer
+                                                                                    ? Color.white
+                                                                                    : Color.primary
                     )
                     .padding(.horizontal, 14)
                     .padding(.vertical, 8)
@@ -817,6 +917,12 @@ struct MeditationPlayerView: View {
                             Capsule(style: .continuous)
                                 .fill(Color.black.opacity(0.45))
                         } else if isGratitudeDarkPlayer {
+                            Capsule(style: .continuous)
+                                .fill(Color.black.opacity(0.35))
+                        } else if isSelfCompassionLightPlayer || isBodyScanLightPlayer {
+                            Capsule(style: .continuous)
+                                .fill(Color.white.opacity(0.52))
+                        } else if isSelfCompassionDarkPlayer || isBodyScanDarkPlayer {
                             Capsule(style: .continuous)
                                 .fill(Color.black.opacity(0.35))
                         }
@@ -909,7 +1015,8 @@ struct MeditationPlayerView: View {
                 }
                 
                 // Start audio guidance with theme-specific file and duration
-                audioManager.startMeditation(themeName: theme.name, duration: duration, backgroundSound: backgroundSoundManager.selectedSound, guidedVoice: guidedVoiceEnabled)
+                let backgroundSound = BackgroundSound.themeDefault(for: theme.name) ?? backgroundSoundManager.selectedSound
+                audioManager.startMeditation(themeName: theme.name, duration: duration, backgroundSound: backgroundSound, guidedVoice: guidedVoiceEnabled)
             }
         }
     }
@@ -998,8 +1105,8 @@ struct MeditationPlayerView: View {
                         .fill(
                             RadialGradient(
                                 colors: [
-                                    (isCalmPlayer ? Self.calmPlayerAccentButton : (isSleepPlayer ? Self.sleepPlayerAccent : (isFocusPlayer ? Self.focusPlayerBlue : (isStressReliefPlayer ? Self.stressPlayerAccent : (isEnergyPlayer ? Self.energyPlayerAccent : (isGratitudePlayer ? Self.gratitudePlayerGold : primaryColorForTheme(theme.name))))))).opacity(0.35),
-                                    (isCalmPlayer ? Self.calmPlayerAccentButton : (isSleepPlayer ? Self.sleepPlayerAccent : (isFocusPlayer ? Self.focusPlayerBlue : (isStressReliefPlayer ? Self.stressPlayerAccent : (isEnergyPlayer ? Self.energyPlayerAccent : (isGratitudePlayer ? Self.gratitudePlayerGold : primaryColorForTheme(theme.name))))))).opacity(0.1),
+                                    themeAccent.opacity(0.35),
+                                    themeAccent.opacity(0.1),
                                     Color.clear
                                 ],
                                 center: .center,
@@ -1011,7 +1118,7 @@ struct MeditationPlayerView: View {
                     
                     Circle()
                         .stroke(
-                            (isCalmPlayer ? Color.white.opacity(0.22) : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? playerRingTrackColor : primaryColorForTheme(theme.name).opacity(0.2))),
+                            (isCalmPlayer ? Color.white.opacity(0.22) : (referenceRingChrome ? playerRingTrackColor : primaryColorForTheme(theme.name).opacity(0.2))),
                             style: StrokeStyle(lineWidth: 4)
                         )
                         .frame(width: 60, height: 60)
@@ -1019,7 +1126,7 @@ struct MeditationPlayerView: View {
                     Circle()
                         .trim(from: 0, to: loadingProgress)
                         .stroke(
-                            isCalmPlayer ? Self.calmPlayerAccentButton : ((isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer) ? playerRingProgressColor : primaryColorForTheme(theme.name)),
+                            isCalmPlayer ? Self.calmPlayerAccentButton : (referenceRingChrome ? playerRingProgressColor : primaryColorForTheme(theme.name)),
                             style: StrokeStyle(lineWidth: 4, lineCap: .round)
                         )
                         .frame(width: 60, height: 60)
@@ -1030,11 +1137,11 @@ struct MeditationPlayerView: View {
                 VStack(spacing: 8) {
                     Text("Preparing Your Session")
                         .font(.brandHeadline)
-                        .foregroundStyle(isCalmPlayer || isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer ? playerTitleForeground : Color.primary)
+                        .foregroundStyle(referenceRingChrome ? playerTitleForeground : Color.primary)
                     
                     Text("Get comfortable and ready to relax")
                         .font(.brandSubheadline)
-                        .foregroundStyle(isCalmPlayer || isSleepPlayer || isFocusPlayer || isStressReliefPlayer || isEnergyPlayer || isGratitudePlayer ? playerSubtitleForeground : Color.secondary)
+                        .foregroundStyle(referenceRingChrome ? playerSubtitleForeground : Color.secondary)
                 }
             }
         }
@@ -1133,6 +1240,10 @@ struct MeditationPlayerView: View {
             return Color(red: 255 / 255, green: 141 / 255, blue: 40 / 255)  // #ff8d28
         case "Gratitude":
             return Color(red: 255 / 255, green: 204 / 255, blue: 0)  // #ffcc00
+        case "Self-Compassion":
+            return Color(red: 232 / 255, green: 107 / 255, blue: 138 / 255)  // #e86b8a
+        case "Body Scan":
+            return Color(red: 58 / 255, green: 168 / 255, blue: 138 / 255)  // #3aa88a
         default:
             return .blue
         }

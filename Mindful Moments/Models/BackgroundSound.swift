@@ -16,9 +16,34 @@ enum BackgroundSound: String, CaseIterable, Codable, Identifiable {
     case stressRelief = "Stress Relief"
     case energy = "Energy"
     case gratitude = "Gratitude"
+    case selfCompassion = "Self-Compassion"
+    case bodyScan = "Body Scan"
     case none = "None"
-    
+
     var id: String { rawValue }
+
+    var isPlusOnly: Bool {
+        switch self {
+        case .selfCompassion, .bodyScan: return true
+        default: return false
+        }
+    }
+
+    static var selectableSounds: [BackgroundSound] {
+        allCases.filter { $0 != .none }
+    }
+
+    static func sounds(isPlusActive: Bool) -> [BackgroundSound] {
+        selectableSounds.filter { !($0.isPlusOnly && !isPlusActive) }
+    }
+
+    static func themeDefault(for themeName: String) -> BackgroundSound? {
+        switch themeName {
+        case "Self-Compassion": return .selfCompassion
+        case "Body Scan": return .bodyScan
+        default: return nil
+        }
+    }
     
     var displayName: String { rawValue }
     
@@ -32,6 +57,8 @@ enum BackgroundSound: String, CaseIterable, Codable, Identifiable {
         case .stressRelief: return "Calming stress relief"
         case .energy: return "Energizing ambient sounds"
         case .gratitude: return "Uplifting gratitude tones"
+        case .selfCompassion: return "Warm, gentle tones"
+        case .bodyScan: return "Soft, grounding ambience"
         case .none: return "Silent meditation"
         }
     }
@@ -46,6 +73,8 @@ enum BackgroundSound: String, CaseIterable, Codable, Identifiable {
         case .stressRelief: return "heart.fill"
         case .energy: return "bolt.fill"
         case .gratitude: return "hands.sparkles.fill"
+        case .selfCompassion: return "heart.circle.fill"
+        case .bodyScan: return "figure.mind.and.body"
         case .none: return "speaker.slash.fill"
         }
     }
@@ -78,6 +107,10 @@ enum BackgroundSound: String, CaseIterable, Codable, Identifiable {
             return "energy_ambient_\(duration)_minutes.mp3"
         case .gratitude:
             return "gratitude_ambient_\(duration)_minutes.mp3"
+        case .selfCompassion:
+            return "self_compassion_ambient_\(duration)_minutes.mp3"
+        case .bodyScan:
+            return "body_scan_ambient_\(duration)_minutes.mp3"
         case .none:
             return nil
         }
